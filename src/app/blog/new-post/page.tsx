@@ -26,14 +26,14 @@ export default function NewPost() {
 
   return (
     <div className="editor-container">
-      <ReactQuill
+      {/* <ReactQuill
         theme="snow"
         value={editorContent}
         onChange={setEditorContent}
         modules={modules}
         formats={formats}
         style={{ height: "400px" }}
-      />
+      /> */}
     </div>
   );
 }
