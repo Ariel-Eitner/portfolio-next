@@ -5,9 +5,11 @@ import Link from "next/link";
 const MainNavbar = () => {
   const [colorChange, setColorChange] = useState(false);
   const scrollToSection = (sectionId: string) => {
-    const section = document.querySelector(sectionId);
-    if (section) {
-      section.scrollIntoView({ behavior: "smooth" });
+    if (typeof window !== "undefined") {
+      const section = document.querySelector(sectionId);
+      if (section) {
+        section.scrollIntoView({ behavior: "smooth" });
+      }
     }
   };
 

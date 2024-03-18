@@ -4,13 +4,9 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import "../../../styles/custom-quill.css";
 
-// Importa React Quill de manera dinámica para evitar problemas de SSR
-
 export default function NewPost() {
-  // Almacenar el contenido del editor en el estado
   const [editorContent, setEditorContent] = React.useState("");
 
-  // Configuración para el editor React Quill
   const modules = {
     toolbar: [
       [{ header: [1, 2, false] }],
