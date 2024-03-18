@@ -1,0 +1,8 @@
+.ql-toolbar {
+  background: #f0f0f0; /* Nuevo color de fondo para la barra de herramientas */
+}
+
+.ql-editor {
+  background-color: #fafafa; /* Nuevo color de fondo para el editor */
+  color: #333;
+}
