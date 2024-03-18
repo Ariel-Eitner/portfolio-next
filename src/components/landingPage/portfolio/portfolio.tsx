@@ -40,7 +40,6 @@ export default function Portfolio() {
                 alt={project.alt}
                 width={500}
                 height={300}
-                layout="responsive"
               />
               <div className="px-6 py-4">
                 <div className="font-bold text-xl mb-2">{project.title}</div>
