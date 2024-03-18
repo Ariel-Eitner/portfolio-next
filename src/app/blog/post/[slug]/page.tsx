@@ -20,7 +20,7 @@ export default function Post({ params }: any) {
       <h1 className="text-2xl font-bold">{post?.title}</h1>
 
       <SummaryBox sections={post?.sections || []} />
-      <ContentRenderer sections={post?.sections || []} />
+      {/* <ContentRenderer sections={post?.sections || []} /> */}
     </article>
   );
 }
