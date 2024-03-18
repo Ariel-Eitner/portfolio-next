@@ -1,12 +1,15 @@
-"use client";
-import React from "react";
-import ReactQuill from "react-quill";
+import React, { useState, useEffect } from "react";
+import dynamic from "next/dynamic";
 import "react-quill/dist/quill.snow.css";
 import "../../../styles/custom-quill.css";
 
-export default function NewPost() {
-  const [editorContent, setEditorContent] = React.useState("");
+// Importa ReactQuill dinámicamente con SSR desactivado
+const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
+export default function NewPost() {
+  const [editorContent, setEditorContent] = useState("");
+
+  // Define tus módulos y formatos fuera del componente si no dependen de las props o el estado
   const modules = {
     toolbar: [
       [{ header: [1, 2, false] }],
