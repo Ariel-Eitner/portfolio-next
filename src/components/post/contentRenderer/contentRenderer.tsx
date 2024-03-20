@@ -21,6 +21,7 @@ interface Subsection {
 import React from "react";
 
 import Image from "next/image";
+import { CheckoutButton } from "@/components/stripe/checkout-button";
 
 interface ContentRendererProps {
   sections: Section[];

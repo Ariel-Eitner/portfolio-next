@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const MainNavbar = () => {
   return (
-    <nav className="fixed top-0 w-full z-10 bg-black shadow-md transition-colors duration-300">
+    <nav className="fixed top-0 w-full z-30 bg-black shadow-md transition-colors duration-300 ">
       <div className="max-w-6xl mx-auto px-10">
         <div className="flex justify-between items-center py-3">
           <div className="text-lg font-semibold text-white">
@@ -44,6 +44,12 @@ const MainNavbar = () => {
               className="text-white hover:text-gray-700 cursor-pointer"
             >
               Contacto
+            </Link>
+            <Link
+              href={`mailto:ariel.10.e@hotmail.com?subject=Hola Ariel, Vamos a crear algo increíble juntos! 🚀&body=`}
+              className="text-white hover:text-gray-700 cursor-pointer"
+            >
+              Contrátame
             </Link>
           </div>
         </div>

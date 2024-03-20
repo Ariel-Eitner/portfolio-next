@@ -63,7 +63,7 @@ export default function Services() {
   return (
     <div id="Services" className="py-16 bg-gray-700 text-center">
       <h2 className="text-4xl mb-8">Servicios</h2>
-      <div className="grid grid-cols-3 gap-4 mx-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mx-4">
         {servicios.map((servicio) => (
           <div
             className="service-item p-4 rounded-lg bg-gray-500"

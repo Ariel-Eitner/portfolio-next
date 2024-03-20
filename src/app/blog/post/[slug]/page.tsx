@@ -6,13 +6,6 @@ import SummaryBox from "@/components/post/sumaryBox/sumaryBox";
 import ContentRenderer from "@/components/post/contentRenderer/contentRenderer";
 
 export default function Post({ params }: any) {
-  // const normalizeSlug = (slug) => {
-  //   return slug
-  //     .split("-")
-  //     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-  //     .join(" ");
-  // };
-
   const post = blogPosts.find((post) => post.slug === params.slug);
 
   return (

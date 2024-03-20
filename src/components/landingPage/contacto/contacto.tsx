@@ -28,18 +28,23 @@ export default function Contacto() {
     },
   ];
   return (
-    <div id="Contacto" className="bg-gray-700 h-dvh">
-      <h2 className="text-center  mb-12 text-2xl font-bold">Contacto</h2>
-      <ul className="flex justify-center items-center list-none">
+    <div id="Contacto" className="bg-gray-700 h-auto py-12">
+      <h2 className="text-center mb-12 text-2xl font-bold">Contacto</h2>
+      <ul className="flex flex-col md:flex-row justify-center items-center list-none">
         {contactos.map((contacto, index) => (
-          <li key={index} className="mx-5">
+          <li key={index} className="mx-2 my-2 md:mx-5">
             <a
               href={contacto.url}
               className="flex items-center no-underline text-current"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Image src={contacto.icon} alt={contacto.name} />
+              <Image
+                src={contacto.icon}
+                alt={contacto.name}
+                width={40}
+                height={40}
+              />
               <p className="ml-2">{contacto.name}</p>
             </a>
           </li>

@@ -6,12 +6,12 @@ export default function Inicio() {
     <>
       <div
         id="inicio"
-        className="h-screen bg-cover bg-center bg-no-repeat flex justify-center items-center text-center relative"
+        className="h-screen bg-cover bg-center bg-fixed flex justify-center items-center text-center relative"
         style={{ backgroundImage: `url('/images/6.jpeg')` }}
       >
         <div className="absolute top-0 left-0 right-0 bottom-0 bg-black bg-opacity-50 z-5"></div>
-        <div className="inicio-content relative z-5">
-          <div className="perfil-imagen mb-4 inline-block w-38 h-38 rounded-full overflow-hidden relative z-5">
+        <div className="inicio-content relative z-7">
+          <div className="perfil-imagen mb-4 inline-block w-38 h-38 rounded-full overflow-hidden relative z-1">
             <Image
               src={fotoPerfil}
               alt="Ariel Eitner"

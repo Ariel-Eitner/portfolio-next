@@ -1,4 +1,5 @@
 import LastEntries from "@/components/lastEntries/lastEntries";
+
 import Link from "next/link";
 import React from "react";
 
