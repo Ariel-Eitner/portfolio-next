@@ -18,7 +18,7 @@ export default function Contacto() {
     },
     {
       name: "ariel.10.e@hotmail.com",
-      url: "mailto:ariel.10.e@hotmail.com",
+      url: "mailto:ariel.10.e@hotmail.com?subject=Hola Ariel, Vamos a crear algo increíble juntos! 🚀&body=",
       icon: mailIcon,
     },
     {
