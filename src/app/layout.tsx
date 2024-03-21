@@ -8,7 +8,21 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Ariel Eitner Next Portfolio",
-  description: "Portafolio de Ariel Eitner",
+  description: "Ariel Eitner Next Portfolio",
+  applicationName: "Ariel Eitner Next Portfolio",
+  creator: "Ariel Eitner",
+  referrer: "origin-when-cross-origin",
+  keywords: [
+    "Next.js",
+    "React",
+    "TypeScript",
+    "Full-Stack",
+    "Back-End",
+    "Front-End",
+  ],
+  openGraph: {
+    images: "/public/images/7.png",
+  },
 };
 
 export default function RootLayout({
