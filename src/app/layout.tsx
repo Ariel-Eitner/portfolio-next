@@ -22,6 +22,9 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     images: "/public/images/7.png",
+    title: "Ariel Eitner Next Portfolio",
+    description: "Ariel Eitner Next Portfolio",
+    url: "https://portfolio-next-xi-nine.vercel.app/",
   },
 };
 
