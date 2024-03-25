@@ -106,7 +106,7 @@ const MainNavbar = () => {
             ) : (
               <>
                 <a
-                  href="/api/auth/login?returnTo=location"
+                  href="/api/auth/login"
                   className="text-white hover:text-gray-700 cursor-pointer"
                 >
                   Login
