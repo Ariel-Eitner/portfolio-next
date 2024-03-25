@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import MainNavbar from "@/components/navbar/navbar";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import { UserProvider } from "@auth0/nextjs-auth0/client";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -35,11 +36,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={""}>
-        <MainNavbar />
-        {children}
-      </body>
-      <GoogleAnalytics gaId="G-7D5PXZ28B6" />
+      <UserProvider>
+        <body className={""}>
+          <MainNavbar />
+          {children}
+        </body>
+        <GoogleAnalytics gaId="G-7D5PXZ28B6" />
+      </UserProvider>
     </html>
   );
 }

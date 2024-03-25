@@ -1,3 +1,4 @@
+import { NewPost } from "@/components/blogButton/newPost";
 import LastEntries from "@/components/lastEntries/lastEntries";
 
 import Link from "next/link";
@@ -41,7 +42,7 @@ export default function BlogLayout({
                 </span>
               </div>
             </section>
-            <Link
+            {/* <Link
               href="/blog/new-post"
               className=" mt-5 inline-flex items-center px-4 py-2 bg-green-500 text-white font-semibold rounded-md hover:bg-green-600"
             >
@@ -58,7 +59,8 @@ export default function BlogLayout({
                 />
               </svg>
               Nuevo post
-            </Link>
+            </Link> */}
+            <NewPost />
           </aside>
         </div>
       </div>

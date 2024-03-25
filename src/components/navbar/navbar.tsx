@@ -1,9 +1,12 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
+import { useUser } from "@auth0/nextjs-auth0/client";
+import Image from "next/image";
 
 const MainNavbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false); // Estado para controlar la visibilidad del menú
+  const { user, error, isLoading } = useUser();
 
   return (
     <nav className="fixed top-0 w-full z-30 bg-black shadow-md transition-colors duration-300">
@@ -81,6 +84,35 @@ const MainNavbar = () => {
             >
               Contrátame
             </Link>
+            {user ? (
+              <>
+                <span>{user.name}</span>
+                {user.picture && (
+                  <Image
+                    src={user.picture || ""}
+                    alt="User Image"
+                    width={30}
+                    height={30}
+                    className="rounded-full"
+                  />
+                )}
+                <a
+                  href="/api/auth/logout"
+                  className="text-white hover:text-gray-700 cursor-pointer"
+                >
+                  Logout
+                </a>
+              </>
+            ) : (
+              <>
+                <a
+                  href="/api/auth/login?returnTo=location"
+                  className="text-white hover:text-gray-700 cursor-pointer"
+                >
+                  Login
+                </a>
+              </>
+            )}
           </div>
         </div>
         {/* Segundo grupo de enlaces, visible solo en dispositivos móviles */}

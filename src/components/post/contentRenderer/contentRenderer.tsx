@@ -42,7 +42,11 @@ const ContentRenderer: React.FC<ContentRendererProps> = ({ sections }) => {
         );
       case "text":
         return (
-          <p key={index} className="text-base">
+          <p
+            key={index}
+            className="text-base"
+            style={{ whiteSpace: "pre-wrap" }}
+          >
             {item.data}
           </p>
         );

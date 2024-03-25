@@ -16,10 +16,10 @@ interface SummaryBoxProps {
 
 const SummaryBox: React.FC<SummaryBoxProps> = ({ sections }) => {
   return (
-    <div className="bg-gray-100 p-4 rounded-lg">
+    <div className="bg-gray-200 p-4 rounded-lg shadow-lg max-w-fit text-left">
       {sections.map((section, sIndex) => {
         const sectionSlug = titleToSlug(section.header);
-        let sectionIndex = sIndex + 1; // Restableciendo el índice de sección
+        let sectionIndex = sIndex + 1;
 
         return (
           <React.Fragment key={sIndex}>

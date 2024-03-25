@@ -1,7 +1,34 @@
-const blogPosts = [
+interface ContentItem {
+  type: "text" | "image";
+  data?: string;
+  src?: string;
+  alt?: string;
+  width?: number;
+  height?: number;
+}
+
+interface Subsection {
+  content: ContentItem[];
+  title: string;
+}
+
+interface Section {
+  header: string;
+  content: ContentItem[];
+  subsections: Subsection[];
+}
+
+export interface BlogPost {
+  id: number;
+  sections: Section[];
+  slug: string;
+  title: string;
+}
+
+const blogPosts: BlogPost[] = [
   {
     id: 1,
-    slug: "web-development-basics",
+    slug: "fundamentos-del-desarrollo-web",
     title: "Fundamentos del Desarrollo Web: HTML, CSS y JavaScript",
     sections: [
       {
