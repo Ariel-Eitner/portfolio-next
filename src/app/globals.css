@@ -1,33 +1,220 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+/* ---------------------------------------------------------------------------
+   Design tokens (Tailwind v4 CSS-first config)
+   Paleta near-black + un único acento ámbar, usado con moderación.
+--------------------------------------------------------------------------- */
+@theme {
+  /* Superficies. "canvas" y no "base": `text-base` ya es un tamaño de fuente
+     en Tailwind, y un `--color-base` colisionaría con esa utilidad. */
+  --color-canvas: #08080a;
+  --color-raised: #101013;
+  --color-hairline: #1e1e24;
+  --color-hairline-strong: #2a2a32;
+
+  /* Texto */
+  --color-ink: #f4f4f5;
+  --color-ink-muted: #a1a1aa;
+  --color-ink-faint: #6b6b75;
+
+  /* Acento */
+  --color-accent: #ffb224;
+
+  /* Tipografía */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", sans-serif;
+  --font-mono: var(--font-mono-jet), ui-monospace, "SF Mono", "Cascadia Code",
+    monospace;
+
+  /* Escala fluida: crece con el viewport sin media queries */
+  --text-display: clamp(2.75rem, 1.2rem + 6.6vw, 6.5rem);
+  --text-display--line-height: 0.95;
+  --text-display--letter-spacing: -0.04em;
+
+  --text-h2: clamp(1.875rem, 1.2rem + 2.4vw, 3rem);
+  --text-h2--line-height: 1.08;
+  --text-h2--letter-spacing: -0.03em;
+
+  --text-h3: clamp(1.25rem, 1.05rem + 0.7vw, 1.625rem);
+  --text-h3--line-height: 1.2;
+  --text-h3--letter-spacing: -0.02em;
+
+  --text-lead: clamp(1.0625rem, 0.98rem + 0.42vw, 1.3125rem);
+  --text-lead--line-height: 1.6;
+
+  /* Ritmo vertical compartido por todas las secciones */
+  --spacing-section: clamp(5rem, 3rem + 9vw, 9.5rem);
+
+  --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+/* ---------------------------------------------------------------------------
+   Base
+--------------------------------------------------------------------------- */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /* Compensa el nav sticky al saltar a un #ancla */
+    scroll-padding-top: 6rem;
+    -webkit-text-size-adjust: 100%;
   }
-}
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-}
+  body {
+    background-color: var(--color-canvas);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-synthesis-weight: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
 
-@layer utilities {
-  .text-balance {
+  ::selection {
+    background-color: var(--color-accent);
+    color: #08080a;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  /* Los títulos nunca deben partirse en una viuda de una sola palabra */
+  h1,
+  h2,
+  h3 {
     text-wrap: balance;
   }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Utilidades del sistema
+--------------------------------------------------------------------------- */
+@utility container-page {
+  width: 100%;
+  max-width: 72rem;
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 0.6rem + 3vw, 2.5rem);
+}
+
+/* Etiqueta monoespaciada de sección: "01 / stack" */
+@utility eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-ink-faint);
+}
+
+/* Degradado de texto sutil: evita el blanco plano en los títulos grandes */
+@utility text-gradient {
+  background-image: linear-gradient(
+    180deg,
+    var(--color-ink) 30%,
+    color-mix(in oklab, var(--color-ink) 55%, var(--color-canvas))
+  );
+  background-clip: text;
+  color: transparent;
+
+  /* Con line-height < 1 la caja del elemento queda más baja que los glifos:
+     el descendente de la última línea (la "g" de "siguiente") cae fuera y
+     background-clip: text lo deja sin pintar. Ampliamos la caja de relleno
+     —que es la que delimita el degradado— y lo compensamos con el mismo
+     margen negativo para no alterar el ritmo vertical. */
+  padding-bottom: 0.16em;
+  margin-bottom: -0.16em;
+}
+
+/* Borde degradado en tarjetas, sin capas extra de markup */
+@utility card-hairline {
+  border: 1px solid var(--color-hairline);
+  background: linear-gradient(
+    180deg,
+    color-mix(in oklab, var(--color-raised) 92%, white),
+    var(--color-raised)
+  );
+}
+
+/* ---------------------------------------------------------------------------
+   Reveal on scroll — lo activa el IntersectionObserver de <Reveal />.
+   El estado oculto cuelga de [data-js="on"], atributo que sólo escribe un
+   script inline del layout: sin JavaScript nunca se aplica y el contenido
+   se ve completo, sin depender de <noscript>.
+--------------------------------------------------------------------------- */
+@layer components {
+  [data-js="on"] [data-reveal="pending"] {
+    opacity: 0;
+    transform: translateY(1.25rem);
+  }
+
+  [data-reveal="visible"] {
+    opacity: 1;
+    transform: none;
+    transition:
+      opacity 0.7s var(--ease-out-quint),
+      transform 0.7s var(--ease-out-quint);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    [data-js="on"] [data-reveal="pending"] {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Fondo: rejilla tenue + halo ámbar detrás del hero
+--------------------------------------------------------------------------- */
+.bg-grid {
+  background-image:
+    linear-gradient(to right, var(--color-hairline) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--color-hairline) 1px, transparent 1px);
+  background-size: 4rem 4rem;
+  mask-image: radial-gradient(ellipse 100% 60% at 50% 0%, #000 25%, transparent 75%);
+}
+
+/* Scrollbar acorde al tema (Firefox + WebKit) */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-hairline-strong) transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--color-hairline-strong);
+  border-radius: 999px;
+  border: 3px solid var(--color-canvas);
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-ink-faint);
 }

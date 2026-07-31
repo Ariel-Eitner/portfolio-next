@@ -1,26 +1,21 @@
-import Inicio from "@/components/landingPage/inicio/inicio";
-import About from "@/components/landingPage/about/about";
-import {
-  backendDependencies,
-  frontendDependencies,
-  backendDevDependencies,
-} from "../data/dependencies";
-import Services from "@/components/landingPage/servicios/servicios";
-import Portfolio from "@/components/landingPage/portfolio/portfolio";
-import Contacto from "@/components/landingPage/contacto/contacto";
+import Hero from "@/components/sections/Hero";
+import About from "@/components/sections/About";
+import Principles from "@/components/sections/Principles";
+import Stack from "@/components/sections/Stack";
+import Experience from "@/components/sections/Experience";
+import Projects from "@/components/sections/Projects";
+import Contact from "@/components/sections/Contact";
 
 export default function Home() {
   return (
     <>
-      <Inicio />
-      <About
-        backendDependencies={backendDependencies}
-        backendDevDependencies={backendDevDependencies}
-        frontendDependencies={frontendDependencies}
-      />
-      <Services />
-      <Portfolio />
-      <Contacto />
+      <Hero />
+      <About />
+      <Principles />
+      <Stack />
+      <Experience />
+      <Projects />
+      <Contact />
     </>
   );
 }
