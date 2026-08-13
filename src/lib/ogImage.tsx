@@ -1,12 +1,30 @@
 import { ImageResponse } from "next/og";
-import { profile } from "@/data/profile";
 
-export const size = { width: 1200, height: 630 };
-export const contentType = "image/png";
-export const alt = `${profile.name} — ${profile.role}`;
+export const OG_SIZE = { width: 1200, height: 630 };
+export const OG_CONTENT_TYPE = "image/png";
 
-/** Imagen de compartido generada en el edge; evita mantener un PNG a mano. */
-export default function OpengraphImage() {
+type OgProps = {
+  kicker: string;
+  title: string;
+  subtitle: string;
+  footerLeft: string;
+  footerRight: string;
+};
+
+/**
+ * Imagen de compartido generada en el edge, para no mantener PNG a mano.
+ *
+ * Nota de satori: cualquier `div` con más de un hijo necesita `display: flex`
+ * explícito, y no soporta shorthand de `gap` en todos los ejes. Por eso el
+ * markup es más verboso de lo que sería en el sitio.
+ */
+export function renderOgImage({
+  kicker,
+  title,
+  subtitle,
+  footerLeft,
+  footerRight,
+}: OgProps) {
   return new ImageResponse(
     (
       <div
@@ -17,7 +35,7 @@ export default function OpengraphImage() {
           flexDirection: "column",
           justifyContent: "space-between",
           background: "#08080a",
-          padding: "80px",
+          padding: "76px 80px",
           fontFamily: "sans-serif",
         }}
       >
@@ -33,12 +51,12 @@ export default function OpengraphImage() {
           <div
             style={{
               color: "#6b6b75",
-              fontSize: "26px",
+              fontSize: "25px",
               letterSpacing: "0.16em",
               textTransform: "uppercase",
             }}
           >
-            {profile.location}
+            {kicker}
           </div>
         </div>
 
@@ -46,23 +64,23 @@ export default function OpengraphImage() {
           <div
             style={{
               color: "#f4f4f5",
-              fontSize: "92px",
+              fontSize: title.length > 34 ? "68px" : "88px",
               fontWeight: 700,
-              letterSpacing: "-0.04em",
+              letterSpacing: "-0.035em",
               lineHeight: 1.05,
             }}
           >
-            {profile.name}
+            {title}
           </div>
           <div
             style={{
               color: "#a1a1aa",
-              fontSize: "42px",
-              marginTop: "16px",
+              fontSize: "38px",
+              marginTop: "18px",
               letterSpacing: "-0.02em",
             }}
           >
-            {profile.role}
+            {subtitle}
           </div>
         </div>
 
@@ -72,20 +90,14 @@ export default function OpengraphImage() {
             justifyContent: "space-between",
             alignItems: "flex-end",
             borderTop: "1px solid #1e1e24",
-            paddingTop: "36px",
+            paddingTop: "34px",
           }}
         >
-          <div style={{ color: "#6b6b75", fontSize: "30px" }}>
-            {profile.tagline}
-          </div>
-          {/* Un único hijo de texto: satori exige display:flex explícito
-              en cualquier div con más de un nodo hijo. */}
-          <div style={{ color: "#ffb224", fontSize: "30px" }}>
-            {`${profile.yearsOfExperience} años`}
-          </div>
+          <div style={{ color: "#6b6b75", fontSize: "28px" }}>{footerLeft}</div>
+          <div style={{ color: "#ffb224", fontSize: "28px" }}>{footerRight}</div>
         </div>
       </div>
     ),
-    size,
+    OG_SIZE,
   );
 }

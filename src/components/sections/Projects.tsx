@@ -1,6 +1,8 @@
 import Section from "@/components/ui/Section";
 import Reveal from "@/components/ui/Reveal";
 import { projects, type Project } from "@/data/profile";
+import { sectionId, type Copy } from "@/data/copy";
+import type { Lang } from "@/i18n/config";
 
 function ArrowIcon() {
   return (
@@ -36,14 +38,18 @@ function StackList({ stack }: { stack: string[] }) {
 
 function ProjectCard({
   project,
+  copy,
   featured = false,
 }: {
   project: Project;
+  copy: Copy;
   featured?: boolean;
 }) {
+  const text = copy.projects.items[project.id];
+
   const heading = (
     <span className="inline-flex items-center gap-2">
-      {project.title}
+      {text.title}
       {project.href ? <ArrowIcon /> : null}
     </span>
   );
@@ -54,13 +60,11 @@ function ProjectCard({
         featured ? "lg:p-10" : ""
       }`}
     >
-      {project.metric ? (
-        <p className="eyebrow mb-5 text-accent">{project.metric}</p>
+      {text.metric ? (
+        <p className="eyebrow mb-5 text-accent">{text.metric}</p>
       ) : null}
 
-      <h3
-        className={`font-semibold text-ink ${featured ? "text-h2" : "text-h3"}`}
-      >
+      <h3 className={`font-semibold text-ink ${featured ? "text-h2" : "text-h3"}`}>
         {project.href ? (
           <a
             href={project.href}
@@ -75,9 +79,9 @@ function ProjectCard({
         )}
       </h3>
 
-      <p className="mt-3 text-lead text-ink-muted">{project.blurb}</p>
+      <p className="mt-3 text-lead text-ink-muted">{text.blurb}</p>
       <p className="mt-4 text-sm leading-relaxed text-ink-faint">
-        {project.description}
+        {text.description}
       </p>
 
       <div className="mt-auto">
@@ -87,30 +91,30 @@ function ProjectCard({
   );
 }
 
-export default function Projects() {
+export default function Projects({ copy }: { lang: Lang; copy: Copy }) {
   const featured = projects.filter((p) => p.featured);
   const rest = projects.filter((p) => !p.featured);
 
   return (
     <Section
-      id="proyectos"
+      id={sectionId(copy, "projects")}
       index="05"
-      eyebrow="Proyectos"
-      title="Proyectos propios"
-      intro="Proyectos personales con la arquitectura definida de punta a punta. Los títulos enlazados corresponden a despliegues públicos."
+      eyebrow={copy.projects.eyebrow}
+      title={copy.projects.title}
+      intro={copy.projects.intro}
     >
       <div className="grid gap-5 lg:grid-cols-2">
         {featured.map((project, i) => (
-          <Reveal key={project.title} delay={i * 80} className="relative h-full">
-            <ProjectCard project={project} featured />
+          <Reveal key={project.id} delay={i * 80} className="relative h-full">
+            <ProjectCard project={project} copy={copy} featured />
           </Reveal>
         ))}
       </div>
 
       <div className="mt-5 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
         {rest.map((project, i) => (
-          <Reveal key={project.title} delay={i * 60} className="relative h-full">
-            <ProjectCard project={project} />
+          <Reveal key={project.id} delay={i * 60} className="relative h-full">
+            <ProjectCard project={project} copy={copy} />
           </Reveal>
         ))}
       </div>

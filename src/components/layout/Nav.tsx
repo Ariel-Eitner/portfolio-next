@@ -1,12 +1,45 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { navItems, profile } from "@/data/profile";
+import { profile } from "@/data/profile";
+import type { Copy } from "@/data/copy";
+import { LANG_LABEL, otherLang, path, type Lang } from "@/i18n/config";
 
-export default function Nav() {
+/**
+ * Sólo recibe las tres piezas de copy que usa. Pasarle el diccionario entero
+ * metería la landing completa —bullets, proyectos, FAQ— en el payload de React
+ * de todas las páginas, incluida la del mapa, que no la necesita.
+ */
+type Props = {
+  lang: Lang;
+  siteName: string;
+  nav: Copy["nav"];
+  ui: Copy["ui"];
+  /** En la landing las anclas son locales; fuera de ella hay que anteponer la home. */
+  isHome?: boolean;
+  /**
+   * Equivalente de la página actual en el otro idioma. El selector tiene que
+   * llevar a la traducción de donde estás, no siempre a la home.
+   */
+  altHref?: string;
+};
+
+export default function Nav({
+  lang,
+  siteName,
+  nav,
+  ui,
+  isHome = false,
+  altHref,
+}: Props) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState<string>("");
+
+  const home = path("home", lang);
+  const anchor = (id: string) => (isHome ? `#${id}` : `${home}#${id}`);
+  const alt = otherLang(lang);
+  const mailto = `mailto:${profile.email}?subject=${encodeURIComponent(ui.mailSubject)}`;
 
   // Fondo sólido sólo después de despegarse del hero.
   useEffect(() => {
@@ -17,9 +50,12 @@ export default function Nav() {
   }, []);
 
   // Scrollspy: marca el ítem cuya sección ocupa la franja superior del viewport.
+  // Sólo tiene sentido en la landing, que es donde viven las anclas.
   useEffect(() => {
-    const sections = navItems
-      .map(({ href }) => document.querySelector<HTMLElement>(href))
+    if (!isHome) return;
+
+    const sections = nav
+      .map(({ id }) => document.getElementById(id))
       .filter((el): el is HTMLElement => el !== null);
 
     if (sections.length === 0) return;
@@ -31,14 +67,14 @@ export default function Nav() {
           .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
 
         const first = visible[0];
-        if (first) setActive(`#${first.target.id}`);
+        if (first) setActive(first.target.id);
       },
       { rootMargin: "-20% 0px -70% 0px", threshold: 0 },
     );
 
     for (const section of sections) observer.observe(section);
     return () => observer.disconnect();
-  }, []);
+  }, [nav, isHome]);
 
   // Con el menú móvil abierto, el fondo no debe scrollear.
   useEffect(() => {
@@ -64,7 +100,7 @@ export default function Nav() {
         href="#contenido"
         className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-100 focus:rounded-full focus:bg-accent focus:px-5 focus:py-2.5 focus:text-sm focus:font-medium focus:text-canvas"
       >
-        Saltar al contenido
+        {ui.skipToContent}
       </a>
 
       <header
@@ -75,43 +111,64 @@ export default function Nav() {
         }`}
       >
         <nav
-          aria-label="Principal"
-          className="container-page flex h-16 items-center justify-between sm:h-18"
+          aria-label={siteName}
+          className="container-page flex h-16 items-center justify-between gap-3 sm:h-18"
         >
+          {/* El nombre se muestra en todos los tamaños: en móvil era justamente
+              donde desaparecía. */}
           <a
-            href="#inicio"
-            className="group flex items-center gap-2.5 font-mono text-sm font-medium tracking-tight"
+            href={isHome ? "#inicio" : home}
+            className="group flex shrink-0 items-center gap-2.5 font-mono text-sm font-medium tracking-tight"
           >
             <span className="grid size-8 place-items-center rounded-md border border-hairline-strong bg-raised text-[0.7rem] font-semibold text-accent transition-colors group-hover:border-accent">
               {profile.initials}
             </span>
-            <span className="hidden text-ink sm:inline">{profile.name}</span>
+            <span className="text-ink">{profile.name}</span>
           </a>
 
-          <ul className="hidden items-center gap-1 md:flex">
-            {navItems.map((item) => (
-              <li key={item.href}>
-                <a
-                  href={item.href}
-                  aria-current={active === item.href ? "true" : undefined}
-                  className={`rounded-full px-3.5 py-2 text-sm transition-colors ${
-                    active === item.href
-                      ? "text-ink"
-                      : "text-ink-muted hover:text-ink"
-                  }`}
-                >
-                  {item.label}
-                </a>
-              </li>
-            ))}
+          <ul className="hidden items-center gap-1 lg:flex">
+            {nav.map((item) =>
+              item.key === "map" ? (
+                <li key={item.key}>
+                  <a
+                    href={path("techMap", lang)}
+                    className="rounded-full px-3.5 py-2 text-sm text-ink-muted transition-colors hover:text-ink"
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ) : (
+                <li key={item.key}>
+                  <a
+                    href={anchor(item.id)}
+                    aria-current={active === item.id ? "true" : undefined}
+                    className={`rounded-full px-3.5 py-2 text-sm transition-colors ${
+                      active === item.id ? "text-ink" : "text-ink-muted hover:text-ink"
+                    }`}
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ),
+            )}
           </ul>
 
-          <div className="flex items-center gap-2">
+          <div className="flex shrink-0 items-center gap-2">
             <a
-              href={`mailto:${profile.email}?subject=${encodeURIComponent("Hablemos de un proyecto")}`}
+              href={altHref ?? path("home", alt)}
+              hrefLang={alt}
+              aria-label={ui.switchLangLabel}
+              title={LANG_LABEL[alt]}
+              className="rounded-md border border-hairline px-2.5 py-1.5 font-mono text-[0.7rem] uppercase text-ink-muted transition-colors hover:border-hairline-strong hover:text-ink"
+            >
+              {alt}
+            </a>
+
+            <a
+              href={mailto}
               className="hidden rounded-full bg-ink px-4 py-2 text-sm font-medium text-canvas transition-opacity hover:opacity-85 sm:inline-block"
             >
-              Contratame
+              {ui.hire}
             </a>
 
             <button
@@ -119,8 +176,8 @@ export default function Nav() {
               onClick={() => setOpen((v) => !v)}
               aria-expanded={open}
               aria-controls="menu-movil"
-              aria-label={open ? "Cerrar menú" : "Abrir menú"}
-              className="grid size-10 place-items-center rounded-md border border-hairline text-ink md:hidden"
+              aria-label={open ? ui.closeMenu : ui.openMenu}
+              className="grid size-10 place-items-center rounded-md border border-hairline text-ink lg:hidden"
             >
               <svg
                 viewBox="0 0 24 24"
@@ -131,11 +188,7 @@ export default function Nav() {
                 className="size-5"
                 aria-hidden="true"
               >
-                {open ? (
-                  <path d="M6 6l12 12M18 6L6 18" />
-                ) : (
-                  <path d="M4 8h16M4 16h16" />
-                )}
+                {open ? <path d="M6 6l12 12M18 6L6 18" /> : <path d="M4 8h16M4 16h16" />}
               </svg>
             </button>
           </div>
@@ -146,13 +199,13 @@ export default function Nav() {
       <div
         id="menu-movil"
         hidden={!open}
-        className="fixed inset-0 top-16 z-40 bg-canvas/95 backdrop-blur-xl md:hidden"
+        className="fixed inset-0 top-16 z-40 overflow-y-auto bg-canvas/95 backdrop-blur-xl lg:hidden"
       >
         <ul className="container-page flex flex-col gap-1 py-6">
-          {navItems.map((item, i) => (
-            <li key={item.href}>
+          {nav.map((item, i) => (
+            <li key={item.key}>
               <a
-                href={item.href}
+                href={item.key === "map" ? path("techMap", lang) : anchor(item.id)}
                 onClick={() => setOpen(false)}
                 className="flex items-baseline gap-4 border-b border-hairline py-4 text-2xl font-medium tracking-tight text-ink"
               >
@@ -165,11 +218,11 @@ export default function Nav() {
           ))}
           <li className="pt-6">
             <a
-              href={`mailto:${profile.email}?subject=${encodeURIComponent("Hablemos de un proyecto")}`}
+              href={mailto}
               onClick={() => setOpen(false)}
               className="block rounded-full bg-accent px-5 py-3.5 text-center font-medium text-canvas"
             >
-              Contratame
+              {ui.hire}
             </a>
           </li>
         </ul>

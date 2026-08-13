@@ -1,44 +1,35 @@
 import Reveal from "@/components/ui/Reveal";
 import { profile } from "@/data/profile";
+import { sectionId, type Copy } from "@/data/copy";
+import type { Lang } from "@/i18n/config";
 
-const MAIL_SUBJECT = encodeURIComponent("Hablemos de un proyecto");
+export default function Contact({ copy }: { lang: Lang; copy: Copy }) {
+  const mailto = `mailto:${profile.email}?subject=${encodeURIComponent(copy.ui.mailSubject)}`;
 
-type Channel = {
-  label: string;
-  value: string;
-  href: string;
-  external?: boolean;
-};
+  const channels = [
+    { label: copy.contact.channels.email, value: profile.email, href: mailto },
+    {
+      label: copy.contact.channels.linkedin,
+      value: profile.linkedinUser,
+      href: profile.linkedin,
+      external: true,
+    },
+    {
+      label: copy.contact.channels.github,
+      value: profile.githubUser,
+      href: profile.github,
+      external: true,
+    },
+    {
+      label: copy.contact.channels.phone,
+      value: profile.phone,
+      href: `tel:${profile.phoneHref}`,
+    },
+  ];
 
-const channels: Channel[] = [
-  {
-    label: "Email",
-    value: profile.email,
-    href: `mailto:${profile.email}?subject=${MAIL_SUBJECT}`,
-  },
-  {
-    label: "LinkedIn",
-    value: "in/ariel-eitner",
-    href: profile.linkedin,
-    external: true,
-  },
-  {
-    label: "GitHub",
-    value: "Ariel-Eitner",
-    href: profile.github,
-    external: true,
-  },
-  {
-    label: "Teléfono",
-    value: profile.phone,
-    href: `tel:${profile.phoneHref}`,
-  },
-];
-
-export default function Contact() {
   return (
     <section
-      id="contacto"
+      id={sectionId(copy, "contact")}
       className="relative scroll-mt-24 overflow-hidden border-t border-hairline py-section"
     >
       <div
@@ -49,40 +40,39 @@ export default function Contact() {
       <div className="container-page relative">
         <Reveal>
           <p className="eyebrow">
-            <span className="text-accent">06</span>
+            <span className="text-accent">08</span>
             <span aria-hidden="true" className="h-px w-6 bg-hairline-strong" />
-            Contacto
+            {copy.contact.eyebrow}
           </p>
           <h2 className="mt-5 max-w-3xl text-h2 font-semibold text-gradient">
-            Disponible para proyectos remotos
+            {copy.contact.title}
           </h2>
           <p className="mt-6 max-w-2xl text-lead text-ink-muted">
-            Trabajo en remoto desde {profile.location}. Abierto a posiciones
-            full-time y a contratos por proyecto.
+            {copy.contact.intro}
           </p>
         </Reveal>
 
         <Reveal delay={100}>
           <div className="mt-12 flex flex-wrap gap-3">
             <a
-              href={`mailto:${profile.email}?subject=${MAIL_SUBJECT}`}
+              href={mailto}
               className="rounded-full bg-accent px-6 py-3.5 text-sm font-semibold text-canvas transition-transform hover:-translate-y-0.5"
             >
               {profile.email}
             </a>
             <a
-              href="/cv/CV-Ariel-Eitner-ES.pdf"
+              href={profile.cv.es}
               download
               className="rounded-full border border-hairline-strong px-6 py-3.5 text-sm font-medium text-ink transition-colors hover:border-ink-faint hover:bg-raised"
             >
-              Descargar CV (ES)
+              {copy.contact.cvEs}
             </a>
             <a
-              href="/cv/CV-Ariel-Eitner-EN.pdf"
+              href={profile.cv.en}
               download
               className="rounded-full border border-hairline-strong px-6 py-3.5 text-sm font-medium text-ink transition-colors hover:border-ink-faint hover:bg-raised"
             >
-              Download CV (EN)
+              {copy.contact.cvEn}
             </a>
           </div>
         </Reveal>

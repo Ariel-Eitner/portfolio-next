@@ -1,21 +1,23 @@
 import Section from "@/components/ui/Section";
 import Reveal from "@/components/ui/Reveal";
 import { skillGroups } from "@/data/profile";
+import { sectionId, type Copy } from "@/data/copy";
+import type { Lang } from "@/i18n/config";
 
-export default function Stack() {
+export default function Stack({ copy }: { lang: Lang; copy: Copy }) {
   return (
     <Section
-      id="stack"
+      id={sectionId(copy, "stack")}
       index="03"
-      eyebrow="Stack"
-      title="Stack técnico"
-      intro="Tecnologías agrupadas por capa, aplicadas en proyectos desplegados en producción."
+      eyebrow={copy.stack.eyebrow}
+      title={copy.stack.title}
+      intro={copy.stack.intro}
     >
       <div className="space-y-px overflow-hidden rounded-xl border border-hairline bg-hairline">
         {skillGroups.map((group, i) => (
-          <Reveal key={group.category} delay={i * 50}>
+          <Reveal key={group.id} delay={i * 50}>
             <div className="grid gap-4 bg-canvas p-6 sm:grid-cols-[13rem_1fr] sm:gap-8 sm:p-8">
-              <h3 className="eyebrow pt-1">{group.category}</h3>
+              <h3 className="eyebrow pt-1">{copy.stack.categories[group.id]}</h3>
               <ul className="flex flex-wrap gap-2">
                 {group.items.map((item) => (
                   <li
