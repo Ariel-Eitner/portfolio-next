@@ -32,6 +32,14 @@ export default function Footer({ lang, copy }: { lang: Lang; copy: Copy }) {
             </li>
             <li>
               <a
+                href={path("research", lang)}
+                className="font-mono text-xs text-ink-faint transition-colors hover:text-ink"
+              >
+                {copy.nav.find((item) => item.key === "research")?.label}
+              </a>
+            </li>
+            <li>
+              <a
                 href={path("home", alt)}
                 hrefLang={alt}
                 className="font-mono text-xs text-ink-faint transition-colors hover:text-ink"

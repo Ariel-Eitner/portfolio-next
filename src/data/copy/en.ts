@@ -16,6 +16,21 @@ const en: Copy = {
       description:
         "Interactive map of the 15 areas of professional web development and the technologies I work with in each one: software architecture, performance, cybersecurity, technical SEO, databases, infrastructure, observability, testing, reliability, accessibility and code quality.",
     },
+    research: {
+      title: "Technical research: architecture, security and web engineering",
+      description:
+        "Ariel Eitner's technical research on software architecture, applied cybersecurity, web engineering, AI and data. Case studies and analyses grounded in real systems.",
+    },
+    legalMapResearch: {
+      title: "Designing a navigable legal map for the Law Observatory",
+      description:
+        "A case study on designing a navigable legal map: relationship modelling, D3 visualisation, search, and architectural decisions for the Argentine Law Observatory.",
+    },
+    readingCostResearch: {
+      title: "Reducing marginal cost per visit in the Law Observatory",
+      description:
+        "A case study on lowering the Law Observatory's operating costs through CDN caching, Brotli compression, incremental invalidation, and precomputed references.",
+    },
     keywords: [
       "Ariel Eitner",
       "Ariel Eitner developer",
@@ -74,6 +89,7 @@ const en: Copy = {
     externalLink: "opens in a new tab",
     backToHome: "Back to home",
     currentRole: "Current",
+    aboutMenu: "About me",
   },
 
   nav: [
@@ -83,6 +99,7 @@ const en: Copy = {
     { key: "experience", id: "experience", label: "Experience" },
     { key: "projects", id: "projects", label: "Projects" },
     { key: "map", id: "map", label: "Tech map" },
+    { key: "research", id: "research", label: "Research" },
     { key: "contact", id: "contact", label: "Contact" },
   ],
 

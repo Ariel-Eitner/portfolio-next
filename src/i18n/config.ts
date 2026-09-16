@@ -30,6 +30,15 @@ export const LANG_LABEL: Record<Lang, string> = {
 export const routes = {
   home: { es: "/", en: "/en" },
   techMap: { es: "/mapa-tecnico", en: "/en/tech-map" },
+  research: { es: "/investigacion", en: "/en/research" },
+  legalMapResearch: {
+    es: "/investigacion/mapa-legal-observatorio-leyes",
+    en: "/en/research/legal-map-law-observatory",
+  },
+  readingCostResearch: {
+    es: "/investigacion/reduccion-costos-lectura-observatorio-leyes",
+    en: "/en/research/reducing-reading-costs-law-observatory",
+  },
 } as const;
 
 export type RouteKey = keyof typeof routes;

@@ -14,6 +14,7 @@ export type SectionKey =
   | "experience"
   | "projects"
   | "map"
+  | "research"
   | "contact";
 
 /** `id` es el ancla real del <section>; cambia con el idioma, `key` no. */
@@ -28,6 +29,9 @@ export type Copy = {
     role: string;
     home: { title: string; description: string };
     techMap: { title: string; description: string };
+    research: { title: string; description: string };
+    legalMapResearch: { title: string; description: string };
+    readingCostResearch: { title: string; description: string };
     keywords: string[];
     ogAlt: string;
   };
@@ -42,6 +46,7 @@ export type Copy = {
     externalLink: string;
     backToHome: string;
     currentRole: string;
+    aboutMenu: string;
   };
 
   /** Anclas de la landing. El `id` es también el `id` del <section>. */

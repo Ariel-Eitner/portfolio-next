@@ -16,6 +16,21 @@ const es: Copy = {
       description:
         "Mapa interactivo de las 15 áreas del desarrollo web profesional y las tecnologías que manejo en cada una: arquitectura de software, rendimiento, ciberseguridad, SEO técnico, bases de datos, infraestructura, observabilidad, testing, confiabilidad, accesibilidad y calidad de código.",
     },
+    research: {
+      title: "Investigación técnica: arquitectura, seguridad e ingeniería web",
+      description:
+        "Investigación técnica de Ariel Eitner sobre arquitectura de software, ciberseguridad aplicada, ingeniería web, IA y datos. Casos de estudio y análisis basados en sistemas reales.",
+    },
+    legalMapResearch: {
+      title: "Diseño de un mapa legal navegable para el Observatorio de Leyes",
+      description:
+        "Caso de estudio sobre el diseño de un mapa legal navegable: modelado de relaciones, visualización con D3, búsqueda y decisiones de arquitectura para el Observatorio de Leyes Argentinas.",
+    },
+    readingCostResearch: {
+      title: "Reducción del costo marginal por visita en el Observatorio de Leyes",
+      description:
+        "Caso de estudio sobre la reducción de costos operativos del Observatorio de Leyes mediante caché CDN, compresión Brotli, invalidación incremental y precómputo de referencias.",
+    },
     keywords: [
       "Ariel Eitner",
       "Ariel Eitner desarrollador",
@@ -74,6 +89,7 @@ const es: Copy = {
     externalLink: "abre en una pestaña nueva",
     backToHome: "Volver al inicio",
     currentRole: "Actual",
+    aboutMenu: "Sobre mí",
   },
 
   nav: [
@@ -83,6 +99,7 @@ const es: Copy = {
     { key: "experience", id: "experiencia", label: "Experiencia" },
     { key: "projects", id: "proyectos", label: "Proyectos" },
     { key: "map", id: "mapa", label: "Mapa técnico" },
+    { key: "research", id: "investigacion", label: "Investigación" },
     { key: "contact", id: "contacto", label: "Contacto" },
   ],
 

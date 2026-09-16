@@ -38,6 +38,8 @@ export default function Nav({
 
   const home = path("home", lang);
   const anchor = (id: string) => (isHome ? `#${id}` : `${home}#${id}`);
+  const pageLinks = nav.filter((item) => item.key === "map" || item.key === "research");
+  const anchorLinks = nav.filter((item) => item.key !== "map" && item.key !== "research");
   const alt = otherLang(lang);
   const mailto = `mailto:${profile.email}?subject=${encodeURIComponent(ui.mailSubject)}`;
 
@@ -126,31 +128,59 @@ export default function Nav({
             <span className="text-ink">{profile.name}</span>
           </a>
 
-          <ul className="hidden items-center gap-1 lg:flex">
-            {nav.map((item) =>
-              item.key === "map" ? (
-                <li key={item.key}>
-                  <a
-                    href={path("techMap", lang)}
-                    className="rounded-full px-3.5 py-2 text-sm text-ink-muted transition-colors hover:text-ink"
+          <ul className="hidden shrink-0 items-center gap-2 lg:flex">
+            <li className="relative shrink-0">
+              <details className="group">
+                <summary className="flex h-10 list-none items-center gap-2 whitespace-nowrap rounded-md border border-transparent bg-raised/60 px-3 text-sm font-medium text-ink-muted transition-colors hover:border-hairline-strong hover:bg-raised hover:text-ink group-open:border-hairline-strong group-open:bg-raised group-open:text-ink [&::-webkit-details-marker]:hidden">
+                  <span>{ui.aboutMenu}</span>
+                  <svg
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.7"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    aria-hidden="true"
+                    className="size-3.5 shrink-0 transition-transform group-open:rotate-180"
                   >
-                    {item.label}
-                  </a>
-                </li>
-              ) : (
-                <li key={item.key}>
-                  <a
-                    href={anchor(item.id)}
-                    aria-current={active === item.id ? "true" : undefined}
-                    className={`rounded-full px-3.5 py-2 text-sm transition-colors ${
-                      active === item.id ? "text-ink" : "text-ink-muted hover:text-ink"
-                    }`}
-                  >
-                    {item.label}
-                  </a>
-                </li>
-              ),
-            )}
+                    <path d="m3.5 6 4.5 4 4.5-4" />
+                  </svg>
+                </summary>
+                <ul className="absolute left-0 top-full mt-3 w-60 overflow-hidden rounded-lg border border-hairline-strong bg-raised p-2 shadow-2xl shadow-black/40">
+                  <li className="px-3 pb-2 pt-1 font-mono text-[0.65rem] font-medium uppercase tracking-[0.14em] text-ink-faint">
+                    {ui.aboutMenu}
+                  </li>
+                  {anchorLinks.map((item) => (
+                    <li key={item.key}>
+                      <a
+                        href={anchor(item.id)}
+                        onClick={(event) => {
+                          event.currentTarget.closest("details")?.removeAttribute("open");
+                        }}
+                        aria-current={active === item.id ? "true" : undefined}
+                        className={`block rounded-md px-3 py-3 text-sm transition-colors ${
+                          active === item.id
+                            ? "bg-canvas text-ink"
+                            : "text-ink-muted hover:bg-canvas hover:text-ink"
+                        }`}
+                      >
+                        {item.label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </details>
+            </li>
+            {pageLinks.map((item) => (
+              <li key={item.key}>
+                <a
+                  href={path(item.key === "map" ? "techMap" : "research", lang)}
+                  className="whitespace-nowrap rounded-md px-3 py-2.5 text-sm text-ink-muted transition-colors hover:bg-raised hover:text-ink"
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))}
           </ul>
 
           <div className="flex shrink-0 items-center gap-2">
@@ -205,7 +235,11 @@ export default function Nav({
           {nav.map((item, i) => (
             <li key={item.key}>
               <a
-                href={item.key === "map" ? path("techMap", lang) : anchor(item.id)}
+                href={
+                  item.key === "map" || item.key === "research"
+                    ? path(item.key === "map" ? "techMap" : "research", lang)
+                    : anchor(item.id)
+                }
                 onClick={() => setOpen(false)}
                 className="flex items-baseline gap-4 border-b border-hairline py-4 text-2xl font-medium tracking-tight text-ink"
               >

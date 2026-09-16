@@ -44,7 +44,7 @@ export function buildMetadata(
   route: RouteKey,
 ): Metadata {
   const isHome = route === "home";
-  const { title, description } = isHome ? copy.meta.home : copy.meta.techMap;
+  const { title, description } = copy.meta[route];
   const url = absolute(path(route, lang));
 
   return {
@@ -298,6 +298,63 @@ export function techMapJsonLd(lang: Lang, copy: Copy) {
           termCode: area.id,
           inDefinedTermSet: { "@id": `${url}#areas` },
         })),
+      },
+    ],
+  };
+}
+
+/** Datos estructurados para el indice y los articulos de investigacion. */
+export function researchJsonLd(lang: Lang, copy: Copy, route: RouteKey) {
+  const url = absolute(path(route, lang));
+  const home = absolute(path("home", lang));
+  const isArticle = route !== "research";
+
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      personNode(lang, copy),
+      websiteNode(lang, copy),
+      {
+        "@type": isArticle ? "TechArticle" : "CollectionPage",
+        "@id": `${url}#page`,
+        url,
+        name: copy.meta[route].title,
+        description: copy.meta[route].description,
+        inLanguage: LOCALE[lang],
+        isPartOf: { "@id": SITE_ID },
+        author: { "@id": PERSON_ID },
+        breadcrumb: { "@id": `${url}#breadcrumb` },
+        ...(isArticle
+          ? {
+              headline: copy.meta[route].title,
+              datePublished: "2026-09-16",
+              dateModified: "2026-09-16",
+              about: ["Legal information systems", "Data visualisation", "Software architecture"],
+            }
+          : {}),
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${url}#breadcrumb`,
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: profile.name, item: home },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: copy.meta.research.title,
+            item: absolute(path("research", lang)),
+          },
+          ...(isArticle
+            ? [
+                {
+                  "@type": "ListItem",
+                  position: 3,
+                  name: copy.meta[route].title,
+                  item: url,
+                },
+              ]
+            : []),
+        ],
       },
     ],
   };

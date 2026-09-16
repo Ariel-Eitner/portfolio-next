@@ -240,7 +240,7 @@ export const projects: Project[] = [
   {
     id: "observatorio",
     stack: ["NestJS", "Prisma", "Supabase", "Next.js", "Claude API", "Mercado Pago", "D3"],
-    href: "https://observatorio-de-leyes-front.vercel.app",
+    href: "https://observatorio-de-leyes.com",
     featured: true,
   },
   {
