@@ -10,35 +10,35 @@
  * objeto.
  */
 
-export const LANGS = ["es", "en"] as const;
+export const LANGS = ['es', 'en'] as const;
 export type Lang = (typeof LANGS)[number];
 
-export const DEFAULT_LANG: Lang = "es";
+export const DEFAULT_LANG: Lang = 'es';
 
 /** Etiqueta BCP-47 completa: la que va en hreflang y en OpenGraph. */
 export const LOCALE: Record<Lang, string> = {
-  es: "es-AR",
-  en: "en-US",
+	es: 'es-AR',
+	en: 'en-US',
 };
 
 /** Cómo se nombra cada idioma en su propio idioma (para el selector). */
 export const LANG_LABEL: Record<Lang, string> = {
-  es: "Español",
-  en: "English",
+	es: 'Español',
+	en: 'English',
 };
 
 export const routes = {
-  home: { es: "/", en: "/en" },
-  techMap: { es: "/mapa-tecnico", en: "/en/tech-map" },
-  research: { es: "/investigacion", en: "/en/research" },
-  legalMapResearch: {
-    es: "/investigacion/mapa-legal-observatorio-leyes",
-    en: "/en/research/legal-map-law-observatory",
-  },
-  readingCostResearch: {
-    es: "/investigacion/reduccion-costos-lectura-observatorio-leyes",
-    en: "/en/research/reducing-reading-costs-law-observatory",
-  },
+	home: { es: '/', en: '/en' },
+	techMap: { es: '/mapa-tecnico', en: '/en/tech-map' },
+	research: { es: '/investigacion', en: '/en/research' },
+	legalMapResearch: {
+		es: '/investigacion/mapa-legal-observatorio-leyes',
+		en: '/en/research/legal-map-law-observatory',
+	},
+	readingCostResearch: {
+		es: '/investigacion/reduccion-costos-lectura-observatorio-leyes',
+		en: '/en/research/reducing-reading-costs-law-observatory',
+	},
 } as const;
 
 export type RouteKey = keyof typeof routes;
@@ -46,7 +46,7 @@ export type RouteKey = keyof typeof routes;
 export const ROUTE_KEYS = Object.keys(routes) as RouteKey[];
 
 export function path(key: RouteKey, lang: Lang): string {
-  return routes[key][lang];
+	return routes[key][lang];
 }
 
 /**
@@ -55,17 +55,17 @@ export function path(key: RouteKey, lang: Lang): string {
  * defecto.
  */
 export function alternates(key: RouteKey, lang: Lang) {
-  return {
-    canonical: routes[key][lang],
-    languages: {
-      [LOCALE.es]: routes[key].es,
-      [LOCALE.en]: routes[key].en,
-      "x-default": routes[key][DEFAULT_LANG],
-    },
-  };
+	return {
+		canonical: routes[key][lang],
+		languages: {
+			[LOCALE.es]: routes[key].es,
+			[LOCALE.en]: routes[key].en,
+			'x-default': routes[key][DEFAULT_LANG],
+		},
+	};
 }
 
 /** Ruta equivalente en el otro idioma, para el toggle del nav. */
 export function otherLang(lang: Lang): Lang {
-  return lang === "es" ? "en" : "es";
+	return lang === 'es' ? 'en' : 'es';
 }
