@@ -4,7 +4,7 @@ import { experience } from "@/data/profile";
 import { sectionId, type Copy } from "@/data/copy";
 import type { Lang } from "@/i18n/config";
 
-export default function Experience({ copy }: { lang: Lang; copy: Copy }) {
+export default function Experience({ lang, copy }: { lang: Lang; copy: Copy }) {
   return (
     <Section
       id={sectionId(copy, "experience")}
@@ -50,8 +50,8 @@ export default function Experience({ copy }: { lang: Lang; copy: Copy }) {
                     <span aria-hidden="true">·</span>
                     <span>
                       {job.current
-                        ? job.period.replace(/—.*$/, `— ${copy.experience.present}`)
-                        : job.period}
+                        ? job.period[lang].replace(/—.*$/, `— ${copy.experience.present}`)
+                        : job.period[lang]}
                     </span>
                     <span aria-hidden="true">·</span>
                     <span>{text.mode}</span>

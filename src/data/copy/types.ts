@@ -41,9 +41,11 @@ export type Copy = {
 	hero: {
 		availability: string;
 		role: string;
+		headline: string;
 		tagline: string;
 		statement: string;
 		lead: string;
+		areas: string[];
 		ctaProjects: string;
 		ctaMail: string;
 		ctaCv: string;

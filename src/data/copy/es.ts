@@ -7,9 +7,9 @@ const es: Copy = {
 		siteName: 'Ariel Eitner — Desarrollador Full Stack',
 		role: 'Desarrollador Full Stack',
 		home: {
-			title: 'Ariel Eitner — Desarrollador Full Stack Next.js, React y NestJS',
+			title: 'Ariel Eitner — Ingeniería de software, IA y tecnología institucional',
 			description:
-				'Ariel Eitner, desarrollador full stack con 6+ años en Buenos Aires, Argentina, disponible para trabajo remoto. Next.js, React, TypeScript, NestJS, Laravel, PostgreSQL y Docker. Arquitectura de microservicios, pasarelas de pago (Stripe, Mercado Pago), SEO técnico, Core Web Vitals e integración de IA.',
+				'Desarrollo productos digitales, diseño arquitecturas de software y exploro cómo la inteligencia artificial puede resolver problemas concretos. Comparto investigaciones, proyectos y aprendizajes sobre ingeniería, automatización y ciberseguridad.',
 		},
 		techMap: {
 			title: 'Mapa técnico: arquitectura, performance, seguridad y DevOps',
@@ -105,10 +105,19 @@ const es: Copy = {
 
 	hero: {
 		availability: 'Disponible para trabajo remoto',
-		role: 'Desarrollador Full Stack',
+		role: 'Ingeniería de software · IA aplicada',
+		headline: 'Ingeniería de software, inteligencia artificial y tecnología aplicada a instituciones.',
 		tagline: 'Next.js · React · TypeScript · NestJS · Laravel · PostgreSQL',
-		statement: 'Arquitectura, backend e infraestructura para plataformas en producción.',
-		lead: 'Desarrollador full stack con 6+ años construyendo aplicaciones web escalables desde Buenos Aires, Argentina. Hoy lidero una plataforma edtech multi-país: microservicios dockerizados, pagos internacionales, IA aplicada y SEO técnico.',
+		statement:
+			'Desarrollo productos digitales, diseño arquitecturas de software y exploro cómo la IA puede resolver problemas concretos.',
+		lead:
+			'Comparto investigaciones, proyectos y aprendizajes sobre ingeniería, automatización y ciberseguridad.',
+		areas: [
+			'Ingeniería de software',
+			'IA aplicada',
+			'Ciberseguridad',
+			'Modernización institucional',
+		],
 		ctaProjects: 'Ver proyectos',
 		ctaMail: 'Escribime',
 		ctaCv: 'Descargar CV',
@@ -209,20 +218,40 @@ const es: Copy = {
 		eyebrow: 'Experiencia',
 		title: 'Trayectoria profesional',
 		intro:
-			'Seis años de desarrollo full stack, de sitios a medida para clientes a liderar el producto de una plataforma regional.',
+			'Combino liderazgo técnico, modernización institucional y desarrollo de plataformas digitales con foco en infraestructura y seguridad.',
 		present: 'Presente',
 		items: {
+			besel: {
+				role: 'CTO',
+				mode: 'Liderazgo técnico',
+				bullets: [
+					'Lidero la dirección técnica y la evolución de BESEL y su ecosistema de productos, definiendo prioridades de arquitectura, calidad y modernización.',
+					'Realicé un relevamiento técnico de BESEL y Delegup: arquitectura, dependencias, despliegues y riesgos de seguridad, con una hoja de ruta incremental para mejorar mantenibilidad y reducir riesgos.',
+					'Analicé el rendimiento de besel-website en un entorno local dockerizado e identifiqué oportunidades de mejora en caché, consumo de recursos y operación.',
+					'Preparé una evaluación de ciberseguridad de punta a punta para el sitio: revisión de código, APIs, controles de acceso y dependencias, complementada con pruebas locales y prioridades de hardening.',
+				],
+			},
+			catamarca: {
+				role: 'Desarrollo de plataforma y modernización institucional',
+				mode: 'Catamarca',
+				bullets: [
+					'Construyo el Observatorio Catamarca, un motor documental para organizar y buscar ordenanzas, decretos y resoluciones municipales.',
+					'Diseñé una arquitectura con Next.js, NestJS, Prisma y PostgreSQL, con entornos reproducibles mediante Docker Compose.',
+					'Implementé controles de seguridad para un organismo público: autenticación con tokens de acceso y renovación rotativa, permisos por rol, límites de intentos, validación estricta y auditoría de operaciones.',
+					'Endurecí el entorno de ejecución con base de datos en red interna, contenedores sin privilegios y secretos fuera de las imágenes; documenté un despliegue inicial privado en VPS.',
+				],
+			},
 			msk: {
 				role: 'Desarrollador Líder Full Stack',
 				mode: 'Remoto',
 				bullets: [
-					'Lidero el desarrollo del portal de conocimiento médico multi-país (edtech/ecommerce) con Next.js, React, TypeScript y Tailwind CSS: ~50 páginas, más de 100 API routes y 300+ componentes, con internacionalización (next-intl) para toda LATAM.',
+					'Lideré el desarrollo del portal de conocimiento médico multi-país (edtech/ecommerce) con Next.js, React, TypeScript y Tailwind CSS: ~50 páginas, más de 100 API routes y 300+ componentes, con internacionalización (next-intl) para toda LATAM.',
 					'Integré las pasarelas Stripe, Mercado Pago, PayPal y Rebill en el checkout y en una pasarela de pagos propia, habilitando cobros online en múltiples países.',
-					'Desarrollo y mantengo una arquitectura de microservicios backend en Laravel dockerizados: gateway de pagos, integración con Zoho CRM, generación de certificados PDF con códigos QR e intranet administrativa.',
-					'SEO técnico end-to-end: sitemaps dinámicos, structured data JSON-LD, migración de URLs, Core Web Vitals y auditorías con Lighthouse seguidas en Google Search Console.',
-					'Testing automatizado con Playwright (E2E de checkout y formularios), Vitest y Jest; calidad de código con SonarQube.',
-					'CI/CD con GitHub Actions (entornos dev/prod), Docker y cron jobs en Vercel; datos en Supabase (PostgreSQL) con migraciones versionadas.',
-					'Autenticación con Auth0 y reCAPTCHA v3; seguridad con Cloudflare (WAF, CDN); monitoreo con Sentry, Google Analytics y Hotjar.',
+					'Desarrollé y mantuve una arquitectura de microservicios backend en Laravel dockerizados: gateway de pagos, integración con Zoho CRM, generación de certificados PDF con códigos QR e intranet administrativa.',
+					'Implementé SEO técnico end-to-end: sitemaps dinámicos, structured data JSON-LD, migración de URLs, Core Web Vitals y auditorías con Lighthouse seguidas en Google Search Console.',
+					'Automaticé pruebas con Playwright (E2E de checkout y formularios), Vitest y Jest, y controles de calidad con SonarQube.',
+					'Configuré CI/CD con GitHub Actions (entornos dev/prod), Docker y cron jobs en Vercel; datos en Supabase (PostgreSQL) con migraciones versionadas.',
+					'Integré autenticación con Auth0 y reCAPTCHA v3, seguridad perimetral con Cloudflare (WAF, CDN) y monitoreo con Sentry, Google Analytics y Hotjar.',
 					'Desarrollé un asistente de venta presencial para el equipo comercial (Next.js, shadcn/ui, Zustand) que crea leads, contactos y órdenes en Zoho CRM, con sincronización a Google Sheets cada 5 minutos vía Vercel Crons.',
 				],
 			},

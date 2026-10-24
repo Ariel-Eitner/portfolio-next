@@ -178,34 +178,47 @@ export const skillGroups: SkillGroup[] = [
 /*  Experiencia y proyectos — estructura y etiquetas; la prosa está en copy    */
 /* -------------------------------------------------------------------------- */
 
-export type JobId = 'msk' | 'scriptai' | 'freelance';
+export type JobId = 'besel' | 'catamarca' | 'msk' | 'scriptai' | 'freelance';
 
 export type Job = {
 	id: JobId;
 	company: string;
-	period: string;
+	period: { es: string; en: string };
 	current?: boolean;
 	tags: string[];
 };
 
 export const experience: Job[] = [
 	{
+		id: 'besel',
+		company: 'BESEL',
+		period: { es: '2026 — Presente', en: '2026 — Present' },
+		current: true,
+		tags: ['CTO', 'Arquitectura', 'Ciberseguridad', 'Docker', 'Railway', 'GitHub Actions'],
+	},
+	{
+		id: 'catamarca',
+		company: 'Observatorio Catamarca',
+		period: { es: '2026 — Presente', en: '2026 — Present' },
+		current: true,
+		tags: ['Next.js', 'NestJS', 'PostgreSQL', 'Prisma', 'Docker', 'JWT', 'RBAC'],
+	},
+	{
 		id: 'msk',
 		company: 'MSK LATAM',
-		period: '2024 — 2026',
-		current: true,
+		period: { es: '2024 — agosto de 2026', en: '2024 — August 2026' },
 		tags: ['Next.js', 'TypeScript', 'Laravel', 'Docker', 'Supabase', 'Stripe', 'Playwright'],
 	},
 	{
 		id: 'scriptai',
 		company: 'ScriptAI',
-		period: '2023 — 2024',
+		period: { es: '2023 — 2024', en: '2023 — 2024' },
 		tags: ['React', 'Node.js', 'OpenAI API', 'Auth0', 'Azure'],
 	},
 	{
 		id: 'freelance',
 		company: 'Freelance',
-		period: '2019 — 2022',
+		period: { es: '2019 — 2022', en: '2019 — 2022' },
 		tags: ['React Native', 'GraphQL', 'MongoDB', 'PHP', 'MySQL'],
 	},
 ];

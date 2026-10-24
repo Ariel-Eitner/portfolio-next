@@ -52,34 +52,43 @@ export default function Hero({ lang, copy }: { lang: Lang; copy: Copy }) {
         <div className="mt-8 grid gap-12 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end lg:gap-16">
           <div>
             <Reveal delay={80}>
-              {/* El nombre es el H1: es la consulta por la que más importa
-                  aparecer y, en pantallas chicas, lo primero que hay que leer. */}
+              {/* El nombre conserva la jerarquía H1; el posicionamiento va debajo. */}
               <h1 className="font-semibold">
                 <span className="block text-display text-gradient">
                   {profile.name}
-                </span>
-                <span className="mt-3 block text-h3 font-medium text-accent">
-                  {copy.hero.role}
                 </span>
               </h1>
             </Reveal>
 
             <Reveal delay={140}>
-              <p className="mt-5 font-mono text-xs tracking-wide text-ink-faint sm:text-sm">
-                {copy.hero.tagline}
-              </p>
+              <h2 className="mt-5 max-w-3xl text-h3 font-medium text-accent">
+                {copy.hero.headline}
+              </h2>
             </Reveal>
 
             <Reveal delay={200}>
-              <p className="mt-8 max-w-xl text-lead font-medium text-ink">
+              <p className="mt-6 max-w-2xl text-lead font-medium text-ink">
                 {copy.hero.statement}
               </p>
-              <p className="mt-4 max-w-xl leading-relaxed text-ink-muted">
+              <p className="mt-4 max-w-2xl leading-relaxed text-ink-muted">
                 {copy.hero.lead}
               </p>
             </Reveal>
 
             <Reveal delay={260}>
+              <ul className="mt-7 flex flex-wrap gap-2">
+                {copy.hero.areas.map((area) => (
+                  <li
+                    key={area}
+                    className="rounded-full border border-hairline-strong px-3.5 py-2 text-sm text-ink-muted"
+                  >
+                    {area}
+                  </li>
+                ))}
+              </ul>
+            </Reveal>
+
+            <Reveal delay={320}>
               <div className="mt-10 flex flex-wrap items-center gap-3">
                 <a
                   href={`#${sectionId(copy, "projects")}`}
@@ -110,7 +119,7 @@ export default function Hero({ lang, copy }: { lang: Lang; copy: Copy }) {
             </Reveal>
           </div>
 
-          <Reveal delay={320} className="hidden lg:block">
+          <Reveal delay={380} className="hidden lg:block">
             <div className="relative w-fit">
               <div
                 aria-hidden="true"
@@ -131,7 +140,7 @@ export default function Hero({ lang, copy }: { lang: Lang; copy: Copy }) {
         </div>
 
         {/* Métricas */}
-        <Reveal delay={400}>
+        <Reveal delay={460}>
           <dl className="mt-16 grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-hairline bg-hairline lg:grid-cols-4">
             {statIds.map((id) => (
               <div key={id} className="bg-canvas px-5 py-6">
