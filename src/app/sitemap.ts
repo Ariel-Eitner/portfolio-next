@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { LOCALE, ROUTE_KEYS, routes } from "@/i18n/config";
 import { absolute } from "@/lib/seo";
+import { faro } from "@/data/faro";
 
 /**
  * Un `<url>` por página y por idioma, cada uno declarando a su traducción.
@@ -10,7 +11,7 @@ import { absolute } from "@/lib/seo";
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date();
 
-  return ROUTE_KEYS.flatMap((key) => {
+  const translatedPages = ROUTE_KEYS.flatMap((key) => {
     const languages = {
       [LOCALE.es]: absolute(routes[key].es),
       [LOCALE.en]: absolute(routes[key].en),
@@ -33,4 +34,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
       },
     ];
   });
+  return [
+    ...translatedPages,
+    {
+      url: absolute(faro.path),
+      lastModified: new Date(faro.dateModified),
+      changeFrequency: "monthly",
+      priority: 0.9,
+      images: [
+        "/images/faro/faro-mark.png",
+        "/images/faro/observatorio.png",
+        "/images/faro/municipal-mapa.png",
+        "/images/faro/nacional-mapa.png",
+      ].map(absolute),
+    },
+  ];
 }

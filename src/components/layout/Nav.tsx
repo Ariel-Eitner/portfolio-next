@@ -155,6 +155,7 @@ export default function Nav({ lang, siteName, nav, ui, isHome = false, altHref }
 								</ul>
 							</details>
 						</li>
+						<li><a href='/faro' className='whitespace-nowrap rounded-md px-3 py-2.5 text-sm text-accent transition-colors hover:bg-raised'>FARO</a></li>
 						{pageLinks.map((item) => (
 							<li key={item.key}>
 								<a
@@ -232,6 +233,7 @@ export default function Nav({ lang, siteName, nav, ui, isHome = false, altHref }
 							</a>
 						</li>
 					))}
+					<li><a href='/faro' onClick={() => setOpen(false)} className='flex items-baseline gap-4 border-b border-hairline py-4 text-2xl font-medium tracking-tight text-accent'><span aria-hidden='true' className='font-mono text-xs'>✦</span>FARO</a></li>
 					<li className='pt-6'>
 						<a
 							href={mailto}

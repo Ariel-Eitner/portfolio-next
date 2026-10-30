@@ -6,6 +6,7 @@ import Principles from "@/components/sections/Principles";
 import Stack from "@/components/sections/Stack";
 import Experience from "@/components/sections/Experience";
 import Projects from "@/components/sections/Projects";
+import FaroTeaser from "@/components/sections/FaroTeaser";
 import TechMapTeaser from "@/components/sections/TechMapTeaser";
 import Faq from "@/components/sections/Faq";
 import Contact from "@/components/sections/Contact";
@@ -42,6 +43,7 @@ export default function HomePage({ lang }: { lang: Lang }) {
         <Stack lang={lang} copy={copy} />
         <Experience lang={lang} copy={copy} />
         <Projects lang={lang} copy={copy} />
+        <FaroTeaser lang={lang} />
         <TechMapTeaser lang={lang} copy={copy} />
         <Faq lang={lang} copy={copy} />
         <Contact lang={lang} copy={copy} />

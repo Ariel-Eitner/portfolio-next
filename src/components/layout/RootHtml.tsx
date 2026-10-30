@@ -34,7 +34,7 @@ export default function RootHtml({
   children: ReactNode;
 }) {
   return (
-    <html lang={lang} className={`${inter.variable} ${jetbrainsMono.variable}`}>
+    <html lang={lang} className={`${inter.variable} ${jetbrainsMono.variable}`} suppressHydrationWarning>
       <body>
         {/* Marca que hay JS antes del primer paint. El CSS de las animaciones
             de entrada cuelga de este atributo, así que sin JavaScript el

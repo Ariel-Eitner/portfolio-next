@@ -22,9 +22,55 @@ interactivo de las quince áreas del desarrollo web profesional. En español e i
 | Analítica  | Google Analytics vía `@next/third-parties`       |
 | Deploy     | Vercel                                           |
 
-Una sola variable de entorno, opcional: `NEXT_PUBLIC_SITE_URL` sobrescribe el dominio
+La variable de entorno opcional `NEXT_PUBLIC_SITE_URL` sobrescribe el dominio
 del que se derivan canonical, hreflang, sitemap y JSON-LD. Sin ella se usa el de
 producción, así que el sitio se despliega sin configuración previa.
+`GOOGLE_SITE_VERIFICATION` permite agregar el código de verificación de Search Console
+mediante una etiqueta HTML; es opcional si se verifica la propiedad por DNS.
+
+## FARO: SEO y publicación
+
+La página comercial vive en `/faro`, enlazada desde el inicio y la navegación.
+Su contenido principal y los datos estructurados se entregan en el HTML del servidor.
+Incluye canonical, robots indexables, sitemap con imágenes, Open Graph para servicios
+compatibles (Facebook, LinkedIn, WhatsApp) y tarjeta grande específica para X.
+Las vistas previas usan el faro y se generan sin solicitar recursos externos.
+
+- Identidad, descripción, fecha de actualización y preguntas: `src/data/faro.ts`.
+- Metadata y JSON-LD: `src/lib/faro-seo.ts`. Describe el servicio, marca,
+  proveedor real, página, imagen, navegación y preguntas visibles.
+- Diseño de las tarjetas: `src/lib/faro-social-image.tsx`.
+- Iconos de FARO: `npm run icons -- --faro`. El favicon general del portafolio
+  se conserva; los iconos de la página no garantizan un favicon distinto en Google.
+- Al modificar sustancialmente el contenido, actualizar `dateModified`.
+
+Antes de publicar, confirmar el dominio definitivo en `NEXT_PUBLIC_SITE_URL` y
+ejecutar `npm run lint`, `npm run typecheck` y `npm run build`. Las imágenes sociales
+se publican mediante las rutas de metadata de Next; no hardcodear sus sufijos.
+
+Después de publicar:
+
+1. Confirmar que `/faro`, `/robots.txt`, `/sitemap.xml` y las imágenes declaradas
+   respondan públicamente, sin contraseña ni cabeceras `noindex` del alojamiento.
+2. Verificar el dominio en [Google Search Console](https://search.google.com/search-console),
+   enviar `/sitemap.xml` e inspeccionar la URL pública de FARO para solicitar indexación.
+   Si se usa verificación HTML, configurar `GOOGLE_SITE_VERIFICATION` y reconstruir.
+3. Revisar el HTML publicado y el [test de resultados enriquecidos](https://search.google.com/test/rich-results).
+   El breadcrumb puede ser elegible; el schema de servicio describe la oferta y no
+   garantiza un formato especial. No agregar precios, reseñas ni valoraciones ficticias.
+4. Revisar las vistas previas al compartir y renovar la caché de cada red si muestra
+   una versión anterior. Cada plataforma decide la presentación final.
+5. Mantener casos reales, capturas y servicios actualizados; conseguir enlaces
+   legítimos desde proyectos y municipios. Medir consultas como «FARO digesto digital»
+   y «software de normativa municipal» en Search Console para mejorar el contenido.
+
+La indexación y la posición dependen de Google y de señales externas; el código
+no garantiza un primer puesto. El marcado FAQ coincide con las preguntas visibles,
+pero Google retiró sus resultados enriquecidos FAQ en mayo de 2026.
+Referencias: [cambios de Google Search](https://developers.google.com/search/updates),
+[breadcrumbs](https://developers.google.com/search/docs/appearance/structured-data/breadcrumb),
+[requisitos de aplicaciones](https://developers.google.com/search/docs/appearance/structured-data/software-app)
+y [Open Graph](https://ogp.me/).
 
 ## Empezar
 

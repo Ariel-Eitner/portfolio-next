@@ -5,6 +5,7 @@ import { site } from "@/data/profile";
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
+  verification: { google: process.env.GOOGLE_SITE_VERIFICATION || undefined },
 };
 
 export const viewport: Viewport = {

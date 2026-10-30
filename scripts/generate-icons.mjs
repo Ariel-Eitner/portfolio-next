@@ -12,9 +12,21 @@
  * distintos en cada máquina.
  */
 
-import { writeFileSync } from "node:fs";
+import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
 import { join } from "node:path";
 import sharp from "sharp";
+
+// Marca propia de FARO. No reemplaza los iconos generales del portafolio.
+if (process.argv.includes("--faro")) {
+  const directory = join(import.meta.dirname, "..", "public", "images", "faro");
+  mkdirSync(directory, { recursive: true });
+  const svg = readFileSync(join(directory, "faro-mark.svg"));
+  for (const [filename, size] of [["faro-mark.png", 512], ["faro-icon.png", 192], ["faro-apple.png", 180]]) {
+    await sharp(svg).resize(size, size, { fit: "contain", background: "#071927" }).flatten({ background: "#071927" }).png({ compressionLevel: 9 }).toFile(join(directory, filename));
+  }
+  console.log("FARO: marca (512), icono (192) y apple-touch-icon (180) actualizados.");
+  process.exit(0);
+}
 
 const AMBER = "#ffb224";
 const INK = "#08080a";
