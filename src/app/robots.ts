@@ -9,7 +9,7 @@ export default function robots(): MetadataRoute.Robots {
       // nada acá que convenga esconderles.
       { userAgent: ["GPTBot", "ClaudeBot", "PerplexityBot"], allow: "/" },
     ],
-    sitemap: `${site.url}/sitemap.xml`,
+    sitemap: [`${site.url}/sitemap.xml`, `${site.url}/faro/sitemap.xml`],
     host: site.url,
   };
 }

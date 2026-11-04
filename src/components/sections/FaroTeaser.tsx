@@ -23,12 +23,12 @@ export default function FaroTeaser({ lang }: { lang: Lang }) {
               className="text-3xl leading-tight font-medium tracking-tight text-[#f2f5f5] sm:text-4xl"
             >
               {es
-                ? "La normativa municipal, en claro."
+                ? "FARO: digesto digital para municipios."
                 : "Municipal legislation, made clear."}
             </h2>
             <p className="mt-4 max-w-lg text-sm leading-relaxed text-[#bbceda]">
               {es
-                ? "Una plataforma para organizar, consultar y conectar las normas de una ciudad. Conocé la propuesta para municipios."
+                ? "Software de normativa municipal para organizar ordenanzas, decretos y resoluciones, consultar artículos y explorar sus relaciones en un mapa legal."
                 : "A platform to organize, explore and connect a city’s legislation. Discover the proposal for municipal governments."}
             </p>
           </div>
@@ -36,7 +36,7 @@ export default function FaroTeaser({ lang }: { lang: Lang }) {
             href="/faro"
             className="inline-flex min-h-12 items-center gap-6 rounded-md bg-[#edc87f] px-5 py-3 text-sm font-semibold text-[#0c263b] transition-colors hover:bg-[#ffdfa2]"
           >
-            {es ? "Conocer FARO" : "Explore FARO (Spanish)"}{" "}
+            {es ? "Conocer el digesto digital FARO" : "Explore FARO (Spanish)"}{" "}
             <span aria-hidden="true">↗</span>
           </a>
         </div>

@@ -4,13 +4,15 @@
  * indexada por los mismos `id` que se definen acá.
  */
 
+import { resolveSiteUrl } from '@/lib/site-url';
+
 export const site = {
 	/**
 	 * Cambiar acá el día que haya dominio propio: canonical, sitemap, JSON-LD y
 	 * las imágenes OG se derivan de este valor. La env var permite apuntar a un
 	 * preview sin tocar el código.
 	 */
-	url: process.env.NEXT_PUBLIC_SITE_URL ?? 'https://portfolio-next-xi-nine.vercel.app',
+	url: resolveSiteUrl(process.env.NEXT_PUBLIC_SITE_URL),
 	gaId: 'G-7D5PXZ28B6',
 } as const;
 

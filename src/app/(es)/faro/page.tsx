@@ -113,14 +113,14 @@ export default function FaroPage() {
                 <span /> INFORMACIÓN PÚBLICA. MEJORES DECISIONES.
               </p>
               <h1 id="faro-titulo">
-                La normativa municipal,
+                FARO: digesto digital
                 <br />
-                <em>en claro.</em>
+                <em>para municipios.</em>
               </h1>
               <p className={styles.heroDescription}>
-                FARO es una plataforma de digesto digital para municipios de
-                Argentina. Reúne, organiza y conecta la normativa para facilitar
-                su consulta y gestión.
+                Organice ordenanzas, decretos y resoluciones en un solo lugar.
+                Software de normativa municipal para equipos de gobierno y
+                ciudadanía, con búsqueda, lectura por artículos y mapa legal.
               </p>
               <div className={styles.actions}>
                 <a href="#contacto" className={styles.primary}>
@@ -131,9 +131,9 @@ export default function FaroPage() {
                 </a>
               </div>
               <p className={styles.heroNote}>
-                Una plataforma pensada para municipios.
+                La normativa municipal, en claro.
                 <br />
-                Una consulta abierta para toda la comunidad.
+                Para municipios de Argentina y toda su comunidad.
               </p>
             </div>
           </div>
@@ -152,8 +152,8 @@ export default function FaroPage() {
             <p className={styles.eyebrow}>01 / LA PLATAFORMA</p>
             <div>
               <h2 id="plataforma-titulo">
-                De información dispersa
-                <br />a conocimiento <em>compartido.</em>
+                Un digesto municipal
+                <br /><em>accesible y conectado.</em>
               </h2>
               <p>
                 FARO, Fuente Abierta de Regulación y Ordenamiento, permite
@@ -184,7 +184,7 @@ export default function FaroPage() {
         <section className={styles.demoSection} aria-labelledby="demo-titulo">
           <div className={styles.demoGallery}>
             <div className={styles.sectionIntro}>
-              <p className={styles.eyebrow}>EXPERIENCIAS EN FUNCIONAMIENTO</p>
+              <p className={styles.eyebrow}>APLICACIONES DE LA PLATAFORMA</p>
               <div>
                 <h2 id="demo-titulo">
                   Una base compartida.
@@ -314,6 +314,34 @@ export default function FaroPage() {
               </p>
             </li>
           </ol>
+          <div className={styles.implementationGrid}>
+            <article className={styles.implementationCard}>
+              <div className={styles.implementationText}>
+                <h3>De archivos dispersos a un digesto digital</h3>
+                <p>
+                  Se relevan las ordenanzas, los decretos y las resoluciones
+                  disponibles, sus fuentes y sus formatos. Se acuerdan las
+                  categorías y las prioridades de carga, distinguiendo una ficha
+                  de referencia de una norma con articulado completo. Si hay
+                  documentos escaneados o en papel, se evalúan las tareas de
+                  digitalización y revisión antes de cotizar.
+                </p>
+              </div>
+            </article>
+            <article className={styles.implementationCard}>
+              <div className={styles.implementationText}>
+                <h3>Un circuito para actualizar la normativa</h3>
+                <p>
+                  La implementación define responsables, revisión de fuentes y
+                  frecuencia de publicación con el equipo municipal. Las
+                  referencias, modificaciones y derogaciones se incorporan
+                  conforme se verifica la información. El alcance de la
+                  capacitación, el soporte y el mantenimiento queda establecido
+                  en la propuesta.
+                </p>
+              </div>
+            </article>
+          </div>
           <div className={styles.scope}>
             <span aria-hidden="true">↳</span>
             <p>
@@ -351,6 +379,31 @@ export default function FaroPage() {
                   <p>{answer}</p>
                 </details>
               ))}
+            </div>
+          </div>
+        </section>
+
+        <section className={styles.section} aria-labelledby="investigacion-titulo">
+          <div className={styles.sectionIntro}>
+            <p className={styles.eyebrow}>DISEÑO Y DESARROLLO</p>
+            <div>
+              <h2 id="investigacion-titulo">Cómo se organiza la información normativa</h2>
+              <p>
+                Desarrollado por <Link href="/">{profile.name}</Link>. Estas
+                investigaciones sobre el Observatorio de Leyes explican el
+                enfoque de búsqueda, lectura y relaciones entre normas que
+                también orienta la propuesta municipal de FARO.
+              </p>
+              <p>
+                <Link className={styles.textLink} href="/investigacion/mapa-legal-observatorio-leyes">
+                  Diseño de un mapa legal para explorar relaciones normativas <Arrow />
+                </Link>
+              </p>
+              <p>
+                <Link className={styles.textLink} href="/investigacion/reduccion-costos-lectura-observatorio-leyes">
+                  Cómo facilitar la búsqueda y la lectura de legislación <Arrow />
+                </Link>
+              </p>
             </div>
           </div>
         </section>

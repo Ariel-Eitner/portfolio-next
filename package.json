@@ -11,7 +11,9 @@
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
-    "icons": "node scripts/generate-icons.mjs"
+    "icons": "node scripts/generate-icons.mjs",
+    "images:faro": "tsx scripts/generate-faro-images.tsx",
+    "test": "npm run build && tsx --test tests/seo.test.ts"
   },
   "dependencies": {
     "@next/third-parties": "16.2.12",
@@ -28,6 +30,7 @@
     "eslint": "^9.37.0",
     "eslint-config-next": "16.2.12",
     "tailwindcss": "^4.3.3",
+    "tsx": "^4.23.15",
     "typescript": "^5.9.3"
   }
 }

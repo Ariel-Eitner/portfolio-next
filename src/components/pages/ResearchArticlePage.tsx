@@ -111,6 +111,12 @@ export default function ResearchArticlePage({ lang, article }: { lang: Lang; art
 									Observatorio de Leyes Argentinas
 								</a>
 								<p className='mt-4 text-sm leading-relaxed text-ink-faint'>{ui.disclosure}</p>
+								<p className='mt-5 text-sm leading-relaxed text-ink-muted'>
+									{lang === 'es' ? 'Para la gestión de normativa local, conocé ' : 'For local legislation management, explore '}
+									<a href='/faro' className='text-accent underline underline-offset-4'>
+										{lang === 'es' ? 'FARO, digesto digital para municipios' : 'FARO, a digital municipal legislation platform (Spanish)'}
+									</a>.
+								</p>
 								<a
 									href={article.pdfHref}
 									download

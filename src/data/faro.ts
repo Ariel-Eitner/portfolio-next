@@ -2,11 +2,14 @@
 export const faro = {
   name: "FARO",
   fullName: "Fuente Abierta de Regulación y Ordenamiento",
-  title: "FARO | Digesto digital y normativa municipal",
+  title: "FARO | Digesto digital para municipios de Argentina",
   description:
-    "FARO: software de digesto digital para municipios de Argentina. Organice ordenanzas y decretos, consulte artículos y explore conexiones en el mapa legal.",
+    "Software de digesto digital municipal para organizar ordenanzas, decretos y resoluciones. Búsqueda normativa, lectura por artículos y mapa legal para municipios de Argentina.",
   path: "/faro",
-  dateModified: "2026-10-29",
+  dateModified: "2026-11-04",
+  socialImage: "/images/faro/faro-social.png",
+  socialImageAlt:
+    "FARO, digesto digital para municipios: logo del faro sobre un libro, red normativa y escudo, junto a sus funciones de búsqueda y mapa legal.",
   imageAlt:
     "FARO: un faro iluminando un libro abierto, símbolo de claridad y acceso a la normativa municipal.",
 } as const;
@@ -15,6 +18,18 @@ export const faroQuestions = [
   [
     "¿Qué es FARO y para qué sirve?",
     "FARO, Fuente Abierta de Regulación y Ordenamiento, es una plataforma de digesto digital y gestión de normativa municipal. Permite organizar ordenanzas, decretos y resoluciones, buscar disposiciones, consultar sus artículos y explorar sus conexiones en un mapa legal.",
+  ],
+  [
+    "¿Qué es un digesto digital municipal?",
+    "Es una colección organizada de la normativa de un municipio que se puede consultar en línea. FARO reúne ordenanzas, decretos y resoluciones con fichas, categorías y, cuando está disponible, su articulado. La cobertura y la actualización dependen del material incorporado y del circuito de revisión acordado con la institución.",
+  ],
+  [
+    "¿Cómo se incorporan las ordenanzas y los decretos existentes?",
+    "Se revisan las fuentes y los archivos disponibles, se identifican las normas y se acuerdan las prioridades de incorporación. Si parte del material está en papel o en PDF escaneado, se evalúan la digitalización y la revisión necesarias antes de definir el alcance y el presupuesto.",
+  ],
+  [
+    "¿El mapa legal determina si una norma está vigente?",
+    "El mapa ayuda a explorar referencias, modificaciones y derogaciones registradas entre normas. La vigencia requiere revisar las fuentes y el contexto jurídico: la visualización y los resúmenes orientan la consulta, pero no sustituyen el texto oficial ni la revisión de los responsables de la normativa.",
   ],
   [
     "¿FARO se adapta a un municipio pequeño?",

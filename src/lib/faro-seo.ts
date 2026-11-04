@@ -33,16 +33,17 @@ export const faroMetadata: Metadata = {
     type: "website",
     locale: "es_AR",
     siteName: faro.name,
+    images: [{ url: absolute(faro.socialImage), width: 1200, height: 630, alt: faro.socialImageAlt }],
   },
-  // Next añade las imágenes y sus dimensiones desde los archivos de cada ruta.
   twitter: {
     card: "summary_large_image",
     title: faro.title,
     description: faro.description,
+    images: [{ url: absolute(faro.socialImage), alt: faro.socialImageAlt }],
   },
   icons: {
     icon: [
-      { url: "/images/faro/faro-mark.svg", type: "image/svg+xml" },
+      { url: "/images/faro/faro-icon.svg", type: "image/svg+xml" },
       {
         url: "/images/faro/faro-icon.png",
         type: "image/png",
@@ -65,11 +66,19 @@ export function faroJsonLd() {
   const service = `${url}#servicio`;
   const brand = `${url}#marca`;
   const image = `${url}#imagen`;
+  const socialImage = `${url}#imagen-social`;
   const page = `${url}#webpage`;
   const breadcrumb = `${url}#breadcrumb`;
   return {
     "@context": "https://schema.org",
     "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": `${root}/#website`,
+        url: root,
+        name: `Portafolio de ${profile.name}`,
+        publisher: { "@id": person },
+      },
       {
         "@type": "Person",
         "@id": person,
@@ -97,6 +106,16 @@ export function faroJsonLd() {
         creator: { "@id": person },
       },
       {
+        "@type": "ImageObject",
+        "@id": socialImage,
+        url: absolute(faro.socialImage),
+        contentUrl: absolute(faro.socialImage),
+        width: 1200,
+        height: 630,
+        caption: faro.socialImageAlt,
+        creator: { "@id": person },
+      },
+      {
         "@type": "Service",
         "@id": service,
         name: `${faro.name} — Digesto digital municipal`,
@@ -105,7 +124,7 @@ export function faroJsonLd() {
         description: faro.description,
         brand: { "@id": brand },
         provider: { "@id": person },
-        image: { "@id": image },
+        image: { "@id": socialImage },
         serviceType:
           "Implementación de digesto digital y gestión de normativa municipal",
         areaServed: { "@type": "Country", name: "Argentina" },
@@ -147,7 +166,7 @@ export function faroJsonLd() {
         isPartOf: { "@id": `${root}/#website` },
         mainEntity: { "@id": service },
         about: { "@id": brand },
-        primaryImageOfPage: { "@id": image },
+        primaryImageOfPage: { "@id": socialImage },
         breadcrumb: { "@id": breadcrumb },
         dateModified: faro.dateModified,
         publisher: { "@id": person },

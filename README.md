@@ -86,9 +86,40 @@ npm run build        # build de producción
 npm run lint         # ESLint (flat config)
 npm run typecheck    # tsc --noEmit
 npm run icons        # regenera el favicon a partir del mark "AE"
+npm run images:faro  # marca estática, iconos e imagen social de FARO
+npm test             # build y comprobaciones HTTP de SEO e imágenes
 ```
 
 Requiere Node.js >= 20.9.
+
+## Dominio público y FARO
+
+El origen público es `https://ariel-eitner.vercel.app`. `src/lib/site-url.ts`
+normaliza `NEXT_PUBLIC_SITE_URL` y migra el alias anterior si todavía aparece en
+la configuración del despliegue. Canonical, Open Graph, Twitter, sitemap,
+robots y JSON-LD salen de ese mismo origen. En Vercel, mantener
+`NEXT_PUBLIC_SITE_URL=https://ariel-eitner.vercel.app` para Production.
+
+FARO se presenta como un digesto digital municipal para municipios de Argentina.
+El título, el encabezado, las preguntas y el marcado describen las funciones
+reales, sin precios, reseñas ni adopciones institucionales inventadas.
+
+La página animada y `npm run images:faro` comparten `LighthouseMark.tsx`.
+El generador conserva la relación 640:690 y produce la tarjeta estática clara
+de 1200×630 en `public/images/faro/faro-social.png`, además de marca e iconos.
+Los PNG se versionan: producción los sirve directamente, sin depender de fuentes
+o renderizado de imágenes durante una solicitud. Para regenerarlos con la misma
+tipografía de la propuesta, usar Georgia y Arial instaladas en el equipo;
+con otras fuentes de sistema, revisar visualmente el resultado antes de subirlo.
+
+Después de publicar, comprobar `/faro` con Inspección de URL en Search Console,
+solicitar indexación y revisar el canonical seleccionado por Google. Si la
+propiedad verificada incluye únicamente `/faro`, enviar
+`https://ariel-eitner.vercel.app/faro/sitemap.xml`, que contiene esa página.
+El sitemap general incluye también páginas fuera del prefijo: para enviarlo,
+verificar la propiedad de la raíz del sitio. El archivo de
+verificación de FARO debe permanecer publicado. La indexación y las posiciones
+no se garantizan mediante metadatos.
 
 ## Estructura
 
