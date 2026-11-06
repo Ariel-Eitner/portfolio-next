@@ -1,0 +1,102 @@
+.kicker { color: var(--gold-text); font: 500 11px/1.7 var(--font-mono); letter-spacing: .14em; }
+.teaser { max-width: 1360px; margin: 0 auto; padding: 80px 48px; display: grid; grid-template-columns: .8fr 1.2fr; gap: 60px; align-items: center; border-top: 1px solid var(--line); }
+.teaserCopy h2, .downloadIntro h2, .journeyEnd h2 { font-size: clamp(32px, 3.1vw, 47px); line-height: 1.15; letter-spacing: -.04em; font-weight: 500; margin: 20px 0 !important; }
+.teaserCopy em, .downloadIntro em, .journeyHero em, .journeyEnd em { color: var(--gold-text); }
+.teaserCopy > p:not(.kicker), .downloadIntro > p:not(.kicker), .journeyEnd > p:not(.kicker) { color: var(--muted); font-size: 16px; line-height: 1.85; max-width: 520px; }
+.teaserSteps { list-style: none; padding: 0; margin: 30px 0; display: flex; flex-wrap: wrap; gap: 18px; font-size: 12px; }
+.teaserSteps span { display: block; color: var(--gold-text); font: 11px var(--font-mono); margin-bottom: 8px; }
+.solidLink { display: inline-flex; align-items: center; justify-content: center; gap: 26px; border: 1px solid transparent; border-radius: 8px; padding: 16px 22px; background: var(--primary-bg); color: var(--primary-ink); font-size: 13px; font-weight: 600; line-height: 1.5; }
+.solidLink:hover { background: var(--primary-hover); }
+.inlineLink { display: inline-flex; align-items: center; gap: 8px; color: var(--text); padding: 12px 0; border-bottom: 1px solid var(--line); font-size: 13px; line-height: 1.6; }
+.teaserCopy > .inlineLink { display: table; margin-top: 10px; }
+.figure { min-width: 0; margin: 0; }
+.imageButton { padding: 0; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; background: var(--image-mat); display: block; width: 100%; cursor: zoom-in; color: var(--text); box-shadow: 0 20px 65px #03213b12; }
+.imageButton > img { width: 100%; height: auto; display: block; }
+.imageChrome { display: flex; align-items: center; gap: 5px; padding: 12px 15px; background: var(--panel-accent); border-bottom: 1px solid var(--line); }
+.imageChrome > span { width: 6px; height: 6px; border-radius: 50%; background: var(--muted); opacity: .45; }
+.imageChrome i { margin-left: auto; font: 8px/1 var(--font-mono); letter-spacing: .1em; color: var(--muted); }
+.expandLabel { display: flex; justify-content: space-between; padding: 12px 16px; background: var(--panel-surface); font-size: 11px; }
+.figure figcaption { font-size: 12px; color: var(--muted); line-height: 1.7; padding: 13px 2px 0; }
+.imageDialog { position: fixed; inset: 0; margin: auto; border: 1px solid var(--line); padding: 0; border-radius: 12px; width: min(1500px, 96vw); max-width: 96vw; max-height: 92dvh; overflow: auto; background: var(--surface); color: var(--text); }
+.imageDialog::backdrop { background: #02111ede; backdrop-filter: blur(5px); }
+.dialogToolbar { display: flex; align-items: center; justify-content: space-between; gap: 20px; position: sticky; top: 0; background: var(--surface); padding: 15px 20px; border-bottom: 1px solid var(--line); z-index: 1; }
+.dialogToolbar p { font-size: 13px; line-height: 1.5; }
+.dialogToolbar button { flex-shrink: 0; background: var(--primary-bg); color: var(--primary-ink); border-radius: 6px; padding: 10px 15px; font-size: 12px; cursor: pointer; }
+.imageDialog > img { display: block; width: 100%; height: auto; }
+.mobileFigure .imageDialog { width: min(470px, 96vw); }
+.downloads { max-width: 1264px; margin: 20px auto 0; padding: 65px 48px; background: var(--alternate-surface); border: 1px solid var(--line); border-radius: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+.documentMeta { display: block; margin-top: 24px; color: var(--muted); font: 10px/1.8 var(--font-mono); }
+.downloadOptions { display: grid; gap: 14px; }
+.downloadCard { display: flex; gap: 22px; align-items: flex-start; padding: 26px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; color: var(--text); transition: border-color .2s; }
+.downloadCard:hover { border-color: var(--gold-text); }
+.editionIcon { display: grid; place-items: center; width: 40px; height: 40px; border: 1px solid var(--line); border-radius: 50%; color: var(--gold-text); flex-shrink: 0; font-size: 23px; }
+.downloadCard h3 { font-size: 19px; font-weight: 500; }
+.downloadCard p { margin-top: 8px !important; color: var(--muted); font-size: 13px; line-height: 1.6; }
+.downloadCard div > span { margin-top: 16px; display: flex; gap: 20px; font-size: 12px; font-weight: 600; }
+.journeyHero { max-width: 1360px; margin: auto; padding: 34px 48px 48px; }
+.breadcrumb { display: flex; gap: 12px; color: var(--muted); font-size: 11px; margin-bottom: 60px; }
+.breadcrumb a { color: var(--text); }
+.journeyHero h1 { font-size: clamp(48px, 6.5vw, 88px); font-weight: 500; letter-spacing: -.05em; line-height: 1.07; margin-top: 24px !important; }
+.heroBottom { display: flex; justify-content: space-between; align-items: flex-end; gap: 35px; margin-top: 32px; }
+.heroBottom p { max-width: 670px; color: var(--muted); font-size: 18px; line-height: 1.8; }
+.heroBottom .solidLink { flex-shrink: 0; }
+.journeyFacts { display: flex; gap: 32px; flex-wrap: wrap; margin-top: 45px; padding-top: 22px; border-top: 1px solid var(--line); color: var(--muted); font: 10px/1.8 var(--font-mono); }
+.journeyLayout { max-width: 1360px; margin: auto; padding: 40px 48px; display: grid; grid-template-columns: 185px minmax(0, 1fr); gap: 65px; align-items: start; }
+.chapterNav { position: sticky; top: 125px; }
+.chapterNav ol { list-style: none; padding: 0; margin: 20px 0; }
+.chapterNav li a { color: var(--muted); display: flex; align-items: center; gap: 15px; border-bottom: 1px solid var(--line); padding: 14px 0; font-size: 13px; }
+.chapterNav li span { font: 10px var(--font-mono); color: var(--gold-text); }
+.chapterNav li a:hover { color: var(--text); }
+.chapterNav .inlineLink { font-size: 11px; }
+.chapter { border-top: 1px solid var(--line); padding: 45px 0 70px; }
+.chapter h2 { font-size: clamp(30px, 3.1vw, 43px); font-weight: 500; line-height: 1.18; letter-spacing: -.035em; margin-top: 16px !important; max-width: 760px; }
+.chapterLead { font-size: 16px; line-height: 1.85; color: var(--muted); max-width: 750px; margin: 24px 0 30px !important; }
+.points { list-style: none; margin: 28px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 25px; }
+.points li { padding-top: 14px; border-top: 2px solid var(--line); font-size: 13px; line-height: 1.8; }
+.note { border-left: 2px solid var(--gold-text); padding-left: 18px; color: var(--muted); font-size: 12px; line-height: 1.8; margin-top: 30px !important; }
+.sourcePanel { display: flex; align-items: flex-start; gap: 24px; padding: 36px; background: var(--alternate-surface); border: 1px solid var(--line); border-radius: 12px; }
+.sourcePanel > span { font-size: 35px; color: var(--gold-text); }
+.sourcePanel h3 { font-weight: 500; font-size: 24px; }
+.sourcePanel p { margin-top: 12px !important; font-size: 15px; line-height: 1.8; color: var(--muted); }
+.phones { display: flex; gap: 35px; justify-content: center; padding: 30px; border-radius: 16px; background: var(--alternate-surface); }
+.mobileFigure { max-width: 285px; }
+.nationalChapter { padding: 40px; margin-bottom: 60px; background: var(--soft-surface); border: 1px solid var(--line); border-radius: 16px; }
+.journeyEnd { padding: 100px 24px; text-align: center; }
+.journeyEnd > p { margin-inline: auto !important; }
+.journeyEnd .solidLink { margin-top: 30px; }
+.journeyEnd .inlineLink { display: table; margin: 15px auto 0; }
+@media (max-width: 1100px) {
+  .teaser { gap: 35px; grid-template-columns: 1fr 1.1fr; }
+  .downloads { margin-inline: 30px; gap: 30px; padding: 40px 30px; }
+  .journeyLayout { gap: 35px; grid-template-columns: 155px minmax(0, 1fr); }
+  .heroBottom { align-items: flex-start; flex-direction: column; }
+}
+@media (max-width: 760px) {
+  .teaser { grid-template-columns: 1fr; padding: 50px 22px; gap: 35px; }
+  .teaserCopy h2, .downloadIntro h2, .journeyEnd h2 { font-size: 35px; }
+  .downloads { margin-inline: 22px; padding: 32px 22px; grid-template-columns: 1fr; gap: 28px; }
+  .downloadCard { padding: 22px 18px; gap: 16px; }
+  .journeyHero { padding: 25px 22px 35px; }
+  .breadcrumb { margin-bottom: 40px; }
+  .journeyHero h1 { font-size: clamp(37px, 8.7vw, 64px); }
+  .heroBottom p { font-size: 16px; }
+  .journeyFacts { gap: 10px 20px; margin-top: 32px; }
+  .journeyLayout { display: block; padding: 0 22px; }
+  .chapterNav { position: static; padding-bottom: 30px; }
+  .chapterNav ol { display: flex; flex-wrap: wrap; gap: 8px; margin: 15px 0; }
+  .chapterNav li a { padding: 10px 12px; border: 1px solid var(--line); border-radius: 7px; gap: 8px; font-size: 12px; }
+  .chapterNav > .inlineLink { display: none; }
+  .chapter { padding: 35px 0 45px; }
+  .chapter h2 { font-size: 32px; }
+  .chapterLead { font-size: 15px; }
+  .points { grid-template-columns: 1fr; gap: 14px; }
+  .sourcePanel { padding: 24px; gap: 15px; }
+  .nationalChapter { padding: 25px 18px; }
+  .phones { padding: 22px 12px; gap: 16px; }
+  .mobileFigure .imageChrome { padding: 9px; }
+  .mobileFigure .imageChrome i { display: none; }
+  .mobileFigure .expandLabel { font-size: 9px; padding: 10px; }
+  .dialogToolbar { gap: 10px; padding: 10px; }
+  .dialogToolbar p { font-size: 11px; }
+}
+@media (max-width: 420px) { .phones { flex-direction: column; align-items: center; gap: 30px; } }

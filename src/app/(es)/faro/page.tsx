@@ -4,6 +4,8 @@ import Link from "next/link";
 import Lighthouse from "@/components/faro/Lighthouse";
 import ToolsShowcase from "@/components/faro/ToolsShowcase";
 import ThemeToggle from "@/components/faro/ThemeToggle";
+import PresentationTeaser from "@/components/faro/PresentationTeaser";
+import PresentationDownloads from "@/components/faro/PresentationDownloads";
 import styles from "@/components/faro/faro.module.css";
 import { profile, projects } from "@/data/profile";
 import { faro, faroQuestions as questions } from "@/data/faro";
@@ -76,6 +78,7 @@ export default function FaroPage() {
           <div className={styles.navLinks}>
             <a href="#plataforma">La plataforma</a>
             <a href="#herramientas">Funciones</a>
+            <Link href="/faro/como-funciona">Cómo funciona</Link>
             <a href="#implementacion">Implementación</a>
             <Link href="/" className={styles.portfolioLink}>
               Desarrollo <Arrow diagonal />
@@ -123,11 +126,14 @@ export default function FaroPage() {
                 ciudadanía, con búsqueda, lectura por artículos y mapa legal.
               </p>
               <div className={styles.actions}>
-                <a href="#contacto" className={styles.primary}>
+                <Link href="/faro/como-funciona" className={styles.primary}>
+                  Ver cómo funciona <Arrow />
+                </Link>
+                <a href="#contacto" className={styles.textLink}>
                   Solicitar una demostración <Arrow />
                 </a>
-                <a href="#plataforma" className={styles.textLink}>
-                  Conocer FARO <span aria-hidden="true">↓</span>
+                <a href="#presentacion" className={styles.textLink}>
+                  Descargar presentación <span aria-hidden="true">↓</span>
                 </a>
               </div>
               <p className={styles.heroNote}>
@@ -146,6 +152,8 @@ export default function FaroPage() {
             </div>
           </div>
         </section>
+
+        <PresentationTeaser />
 
         <section className={styles.section} aria-labelledby="plataforma-titulo">
           <div id="plataforma" className={styles.sectionIntro}>
@@ -202,7 +210,7 @@ export default function FaroPage() {
               <article className={styles.implementationCard}>
                 <div className={styles.implementationImage}>
                   <Image
-                    src="/images/faro/observatorio.png"
+                    src="/images/faro/recorrido/cat-inicio.webp"
                     alt="Inicio del digesto municipal de Catamarca con búsqueda y categorías temáticas."
                     width={1440}
                     height={1000}
@@ -354,6 +362,8 @@ export default function FaroPage() {
             </a>
           </div>
         </section>
+
+        <PresentationDownloads />
 
         <section
           id="preguntas"

@@ -31,6 +31,9 @@ mediante una etiqueta HTML; es opcional si se verifica la propiedad por DNS.
 ## FARO: SEO y publicación
 
 La página comercial vive en `/faro`, enlazada desde el inicio y la navegación.
+El recorrido visual vive en `/faro/como-funciona`, con capturas reales ampliables,
+capítulos y ejemplos móviles. Las dos ediciones de la presentación FARO 0.15.1
+se descargan desde `/faro/documentos/`. Los contactos conservan su funcionamiento.
 Su contenido principal y los datos estructurados se entregan en el HTML del servidor.
 Incluye canonical, robots indexables, sitemap con imágenes, Open Graph para servicios
 compatibles (Facebook, LinkedIn, WhatsApp) y tarjeta grande específica para X.

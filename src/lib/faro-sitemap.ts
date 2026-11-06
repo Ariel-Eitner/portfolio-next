@@ -18,3 +18,14 @@ export function faroSitemapEntry(): MetadataRoute.Sitemap[number] {
     ].map(absolute),
   };
 }
+
+export function faroJourneySitemapEntry(): MetadataRoute.Sitemap[number] {
+  return {
+    url: absolute("/faro/como-funciona"),
+    lastModified: new Date(faro.dateModified),
+    changeFrequency: "monthly",
+    priority: 0.8,
+    images: ["cat-resultados", "cat-ficha", "cat-articulo", "cat-mobile-ficha"]
+      .map(name => absolute(`/images/faro/recorrido/${name}.webp`)),
+  };
+}

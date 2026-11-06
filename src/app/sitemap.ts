@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { LOCALE, ROUTE_KEYS, routes } from "@/i18n/config";
 import { absolute } from "@/lib/seo";
-import { faroSitemapEntry } from "@/lib/faro-sitemap";
+import { faroSitemapEntry, faroJourneySitemapEntry } from "@/lib/faro-sitemap";
 
 /**
  * Un `<url>` por página y por idioma, cada uno declarando a su traducción.
@@ -37,5 +37,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     ...translatedPages,
     faroSitemapEntry(),
+    faroJourneySitemapEntry(),
   ];
 }

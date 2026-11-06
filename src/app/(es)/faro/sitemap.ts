@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
-import { faroSitemapEntry } from "@/lib/faro-sitemap";
+import { faroSitemapEntry, faroJourneySitemapEntry } from "@/lib/faro-sitemap";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  return [faroSitemapEntry()];
+  return [faroSitemapEntry(), faroJourneySitemapEntry()];
 }

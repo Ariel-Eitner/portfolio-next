@@ -6,7 +6,7 @@ export const faro = {
   description:
     "Software de digesto digital municipal para organizar ordenanzas, decretos y resoluciones. Búsqueda normativa, lectura por artículos y mapa legal para municipios de Argentina.",
   path: "/faro",
-  dateModified: "2026-11-04",
+  dateModified: "2026-11-06",
   socialImage: "/images/faro/faro-social.png",
   socialImageAlt:
     "FARO, digesto digital para municipios: logo del faro sobre un libro, red normativa y escudo, junto a sus funciones de búsqueda y mapa legal.",

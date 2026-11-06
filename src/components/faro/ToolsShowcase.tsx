@@ -3,12 +3,12 @@
 import Image from "next/image";
 import { useId, useRef, useState, type KeyboardEvent } from "react";
 import styles from "./faro.module.css";
-import municipalSearch from "../../../public/images/faro/municipal-busqueda.png";
-import municipalReading from "../../../public/images/faro/municipal-lectura.png";
-import municipalMap from "../../../public/images/faro/municipal-mapa.png";
-import nationalSearch from "../../../public/images/faro/nacional-busqueda.png";
-import nationalReading from "../../../public/images/faro/nacional-lectura.png";
-import nationalMap from "../../../public/images/faro/nacional-mapa.png";
+import municipalSearch from "../../../public/images/faro/recorrido/cat-resultados.webp";
+import municipalReading from "../../../public/images/faro/recorrido/cat-ficha.webp";
+import municipalMap from "../../../public/images/faro/recorrido/cat-mapa-seleccion.webp";
+import nationalSearch from "../../../public/images/faro/recorrido/nac-resultados.webp";
+import nationalReading from "../../../public/images/faro/recorrido/nac-lectura.webp";
+import nationalMap from "../../../public/images/faro/recorrido/nac-mapa-seleccion.webp";
 
 const screenshots = {
   municipal: {
@@ -46,7 +46,7 @@ const tools = [
     description:
       "Exploración visual de referencias, modificaciones y derogaciones entre normas.",
     detail:
-      "Vista general de la red normativa: grupos de normas y conexiones entre distintas áreas, sin una disposición seleccionada.",
+      "Una norma seleccionada destaca sus conexiones para explorar el contexto de la disposición.",
   },
 ] as const;
 
@@ -64,7 +64,7 @@ const scopes = [
 ] as const;
 
 export default function ToolsShowcase() {
-  const [selectedTool, setSelectedTool] = useState(2);
+  const [selectedTool, setSelectedTool] = useState(0);
   const [selectedScope, setSelectedScope] = useState(0);
   const dialog = useRef<HTMLDialogElement>(null);
   const tabs = useRef<HTMLDivElement>(null);
@@ -74,7 +74,7 @@ export default function ToolsShowcase() {
   const image = screenshots[scope.id][tool.id];
   const description =
     tool.id === "mapa"
-      ? `Vista general del mapa legal ${scope.label.toLowerCase()}, sin normas seleccionadas. ${scope.caption}.`
+      ? `Mapa legal ${scope.label.toLowerCase()} con una norma y sus conexiones seleccionadas. ${scope.caption}.`
       : `${tool.title}: captura del ${scope.label.toLowerCase()}. ${scope.caption}.`;
 
   function navigateTabs(event: KeyboardEvent<HTMLDivElement>) {
