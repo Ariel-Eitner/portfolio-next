@@ -119,7 +119,8 @@ export default function ResearchArticlePage({ lang, article }: { lang: Lang; art
 								</p>
 								<a
 									href={article.pdfHref}
-									download
+									target='_blank'
+									rel='noopener noreferrer'
 									className='mt-6 inline-flex rounded-full bg-accent px-5 py-3 text-sm font-semibold text-canvas'
 								>
 									{ui.downloadPdf}

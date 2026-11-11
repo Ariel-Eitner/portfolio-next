@@ -120,7 +120,7 @@ const en: Copy = {
 		],
 		ctaProjects: 'View projects',
 		ctaMail: 'Email me',
-		ctaCv: 'Download CV',
+		ctaCv: 'View CV',
 		portraitAlt: 'Portrait of Ariel Eitner, full stack developer based in Buenos Aires, Argentina',
 	},
 
@@ -382,8 +382,8 @@ const en: Copy = {
 		eyebrow: 'Contact',
 		title: 'Available for remote projects',
 		intro: 'I work remotely from Buenos Aires, Argentina. Open to full-time positions and project contracts.',
-		cvEs: 'Descargar CV (ES)',
-		cvEn: 'Download CV (EN)',
+		cvEs: 'View CV (ES)',
+		cvEn: 'View CV (EN)',
 		channels: {
 			email: 'Email',
 			linkedin: 'LinkedIn',

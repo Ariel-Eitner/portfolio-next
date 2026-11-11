@@ -6,7 +6,7 @@ export const faro = {
   description:
     "Software de digesto digital municipal para organizar ordenanzas, decretos y resoluciones. Búsqueda normativa, lectura por artículos y mapa legal para municipios de Argentina.",
   path: "/faro",
-  dateModified: "2026-11-06",
+  dateModified: "2026-11-11",
   socialImage: "/images/faro/faro-social.png",
   socialImageAlt:
     "FARO, digesto digital para municipios: logo del faro sobre un libro, red normativa y escudo, junto a sus funciones de búsqueda y mapa legal.",
@@ -14,7 +14,16 @@ export const faro = {
     "FARO: un faro iluminando un libro abierto, símbolo de claridad y acceso a la normativa municipal.",
 } as const;
 
+export const municipalDemo = {
+  url: "https://digesto.catamarcacapital.gob.ar/",
+  name: "Digesto Municipal de Catamarca",
+} as const;
+
 export const faroQuestions = [
+  [
+    "¿Puedo ver una implementación de FARO en funcionamiento?",
+    "Sí. El Digesto Municipal de San Fernando del Valle de Catamarca está disponible en digesto.catamarcacapital.gob.ar. Podés explorar su búsqueda, consultar las normas incorporadas, leer sus artículos y recorrer el mapa legal. El recorrido y las presentaciones de esta página muestran capturas de esa implementación pública.",
+  ],
   [
     "¿Qué es FARO y para qué sirve?",
     "FARO, Fuente Abierta de Regulación y Ordenamiento, es una plataforma de digesto digital y gestión de normativa municipal. Permite organizar ordenanzas, decretos y resoluciones, buscar disposiciones, consultar sus artículos y explorar sus conexiones en un mapa legal.",

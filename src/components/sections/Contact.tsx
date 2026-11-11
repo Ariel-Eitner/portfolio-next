@@ -62,14 +62,16 @@ export default function Contact({ copy }: { lang: Lang; copy: Copy }) {
             </a>
             <a
               href={profile.cv.es}
-              download
+              target="_blank"
+              rel="noopener noreferrer"
               className="rounded-full border border-hairline-strong px-6 py-3.5 text-sm font-medium text-ink transition-colors hover:border-ink-faint hover:bg-raised"
             >
               {copy.contact.cvEs}
             </a>
             <a
               href={profile.cv.en}
-              download
+              target="_blank"
+              rel="noopener noreferrer"
               className="rounded-full border border-hairline-strong px-6 py-3.5 text-sm font-medium text-ink transition-colors hover:border-ink-faint hover:bg-raised"
             >
               {copy.contact.cvEn}

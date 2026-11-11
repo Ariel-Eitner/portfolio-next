@@ -1,4 +1,5 @@
 .kicker { color: var(--gold-text); font: 500 11px/1.7 var(--font-mono); letter-spacing: .14em; }
+.mobileGuide { max-width: 320px; margin: 30px auto 0; }
 .teaser { max-width: 1360px; margin: 0 auto; padding: 80px 48px; display: grid; grid-template-columns: .8fr 1.2fr; gap: 60px; align-items: center; border-top: 1px solid var(--line); }
 .teaserCopy h2, .downloadIntro h2, .journeyEnd h2 { font-size: clamp(32px, 3.1vw, 47px); line-height: 1.15; letter-spacing: -.04em; font-weight: 500; margin: 20px 0 !important; }
 .teaserCopy em, .downloadIntro em, .journeyHero em, .journeyEnd em { color: var(--gold-text); }

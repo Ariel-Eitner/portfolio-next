@@ -8,13 +8,11 @@ import PresentationTeaser from "@/components/faro/PresentationTeaser";
 import PresentationDownloads from "@/components/faro/PresentationDownloads";
 import styles from "@/components/faro/faro.module.css";
 import { profile, projects } from "@/data/profile";
-import { faro, faroQuestions as questions } from "@/data/faro";
+import { faro, municipalDemo, faroQuestions as questions } from "@/data/faro";
 import { faroMetadata, faroJsonLd } from "@/lib/faro-seo";
 const nationalDemo = projects.find(
   (project) => project.id === "observatorio",
 )!.href!;
-// El enlace municipal se incorpora al verificar su URL pública. Nunca apunta al nacional.
-const municipalDemo: string | null = null;
 const email = `mailto:${profile.email}?subject=${encodeURIComponent("FARO · Solicitud institucional de información")}&body=${encodeURIComponent("Se solicita información sobre FARO y la coordinación de una demostración.\n\nMunicipio o institución:\nNombre y cargo de la persona de contacto:\nTeléfono:\nNecesidades y alcance previsto:\nDisponibilidad para una demostración:\n\nSaludos cordiales.")}`;
 const whatsapp = `https://wa.me/${profile.phoneHref.replace(/\D/g, "")}?text=${encodeURIComponent("Se solicita información sobre FARO y la coordinación de una demostración para una institución municipal.")}`;
 
@@ -126,18 +124,18 @@ export default function FaroPage() {
                 ciudadanía, con búsqueda, lectura por artículos y mapa legal.
               </p>
               <div className={styles.actions}>
-                <Link href="/faro/como-funciona" className={styles.primary}>
+                <a href={municipalDemo.url} target="_blank" rel="noreferrer" className={styles.primary}>
+                  Explorar el Digesto de Catamarca <Arrow diagonal />
+                </a>
+                <Link href="/faro/como-funciona" className={styles.textLink}>
                   Ver cómo funciona <Arrow />
                 </Link>
                 <a href="#contacto" className={styles.textLink}>
                   Solicitar una demostración <Arrow />
                 </a>
-                <a href="#presentacion" className={styles.textLink}>
-                  Descargar presentación <span aria-hidden="true">↓</span>
-                </a>
               </div>
               <p className={styles.heroNote}>
-                La normativa municipal, en claro.
+                El Digesto Municipal de Catamarca está disponible para consultar.
                 <br />
                 Para municipios de Argentina y toda su comunidad.
               </p>
@@ -221,19 +219,16 @@ export default function FaroPage() {
                   <p className={styles.smallLabel}>ÁMBITO MUNICIPAL</p>
                   <h3>San Fernando del Valle de Catamarca</h3>
                   <p>
-                    Ordenanzas, decretos y resoluciones organizados para la
-                    consulta municipal y ciudadana.
+                    Una implementación de FARO disponible en línea: búsqueda,
+                    fichas, lectura por artículos y mapa legal de la normativa incorporada.
                   </p>
                   <a
-                    href={municipalDemo ?? "#herramientas"}
+                    href={municipalDemo.url}
                     className={styles.textLink}
-                    {...(municipalDemo
-                      ? { target: "_blank", rel: "noreferrer" }
-                      : {})}
+                    target="_blank"
+                    rel="noreferrer"
                   >
-                    {municipalDemo
-                      ? "Consultar el digesto municipal"
-                      : "Ver las funciones municipales"}{" "}
+                    Explorar el Digesto de Catamarca{" "}
                     <Arrow diagonal />
                   </a>
                 </div>

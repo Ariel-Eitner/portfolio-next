@@ -110,7 +110,8 @@ export default function Hero({ lang, copy }: { lang: Lang; copy: Copy }) {
                 </a>
                 <a
                   href={profile.cv[lang]}
-                  download
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="px-2 py-3.5 text-sm font-medium text-ink-muted underline decoration-hairline-strong underline-offset-4 transition-colors hover:text-ink hover:decoration-accent"
                 >
                   {copy.hero.ctaCv}

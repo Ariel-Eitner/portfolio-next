@@ -88,7 +88,7 @@ export const researchUi: Localized<{
 		solution: 'Resolución',
 		contents: 'Qué vas a encontrar',
 		relatedProject: 'Proyecto relacionado',
-		downloadPdf: 'Descargar PDF',
+		downloadPdf: 'Abrir PDF',
 		disclosure:
 			'El contenido describe decisiones técnicas publicables. No incluye datos privados, credenciales ni detalles de seguridad explotables.',
 	},
@@ -105,7 +105,7 @@ export const researchUi: Localized<{
 		solution: 'Resolution',
 		contents: 'What you will find',
 		relatedProject: 'Related project',
-		downloadPdf: 'Download PDF',
+		downloadPdf: 'Open PDF',
 		disclosure:
 			'This article covers publishable technical decisions. It does not include private data, credentials, or exploitable security details.',
 	},

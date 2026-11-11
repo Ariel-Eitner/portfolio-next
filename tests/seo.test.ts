@@ -4,7 +4,7 @@ import { readFile } from "node:fs/promises";
 import { createServer } from "node:net";
 import { after, before, test } from "node:test";
 import sharp from "sharp";
-import { faro, faroQuestions } from "../src/data/faro";
+import { faro, municipalDemo, faroQuestions } from "../src/data/faro";
 import { PUBLIC_SITE_URL, resolveSiteUrl } from "../src/lib/site-url";
 
 let server: ChildProcess;
@@ -71,6 +71,8 @@ test("FARO serves its canonical, discoverable content, connected schema and work
   assert.equal([...html.matchAll(/<h1\b/g)].length, 1);
   assert.match(html, /FARO: digesto digital/);
   assert.match(html, /De archivos dispersos a un digesto digital/);
+  assert.ok(html.includes(`href="${municipalDemo.url}"`));
+  assert.match(html, /Explorar el Digesto de Catamarca/);
   const rawSchema = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map(match => JSON.parse(match[1]!));
   const graph = rawSchema.flatMap(schema => schema["@graph"] ?? []);
   const page = graph.find(node => node["@type"] === "WebPage");
@@ -97,6 +99,48 @@ test("FARO serves its canonical, discoverable content, connected schema and work
   }
 });
 
+test("the FARO journey links to the public Digesto and serves its demonstrations", async () => {
+  const response = await fetch(`${base}/faro/como-funciona`);
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  assert.ok(html.includes(`href="${municipalDemo.url}"`));
+  assert.match(html, /Ver en el mapa legal/);
+  assert.match(html, /27 páginas/);
+  assert.doesNotMatch(html, /renovadas|nuevas capturas|Capturas municipales del|Recorrido actualizado/);
+  for (const name of ["cat-categorias", "cat-mapa-guia", "cat-mobile-mapa-guia"]) {
+    const image = await fetch(`${base}/images/faro/recorrido/${name}.webp`);
+    assert.equal(image.status, 200);
+    const metadata = await sharp(await image.arrayBuffer()).metadata();
+    assert.ok(metadata.width && metadata.width >= 860);
+  }
+  for (const mode of ["claro", "oscuro"]) {
+    const pdf = await fetch(`${base}/faro/documentos/faro-presentacion-${mode}.pdf`);
+    assert.equal(pdf.status, 200);
+    assert.match(pdf.headers.get("content-type") ?? "", /application\/pdf/);
+    assert.doesNotMatch(pdf.headers.get("content-disposition") ?? "", /attachment/i);
+    const buffer = Buffer.from(await pdf.arrayBuffer());
+    assert.equal(buffer.subarray(0, 5).toString(), "%PDF-");
+  }
+});
+
+test("portfolio documents open in a separate tab without forced downloads", async () => {
+  for (const route of ["/", "/en", "/faro", "/faro/como-funciona",
+    "/investigacion/mapa-legal-observatorio-leyes", "/en/research/legal-map-law-observatory",
+    "/investigacion/reduccion-costos-lectura-observatorio-leyes", "/en/research/reducing-reading-costs-law-observatory"]) {
+    const response = await fetch(`${base}${route}`);
+    assert.equal(response.status, 200, route);
+    const html = await response.text();
+    const documents = [...html.matchAll(/<a\b[^>]*href="[^"]+\.pdf"[^>]*>/g)];
+    assert.ok(documents.length > 0, route);
+    for (const [tag] of documents) {
+      const anchor = attributes(tag);
+      assert.equal(anchor.target, "_blank", `${route}: ${anchor.href}`);
+      assert.match(anchor.rel ?? "", /noopener/);
+      assert.doesNotMatch(tag, /\bdownload(?:\s|=|>)/);
+    }
+  }
+});
+
 test("robots and sitemap consistently advertise the public origin and FARO images", async () => {
   const robots = await (await fetch(`${base}/robots.txt`)).text();
   assert.match(robots, /Allow: \//);
@@ -108,8 +152,9 @@ test("robots and sitemap consistently advertise the public origin and FARO image
   const scopedResponse = await fetch(`${base}/faro/sitemap.xml`);
   assert.equal(scopedResponse.status, 200);
   const scoped = await scopedResponse.text();
-  assert.equal([...scoped.matchAll(/<loc>/g)].length, 1);
-  assert.ok(scoped.includes(`<loc>${PUBLIC_SITE_URL}/faro</loc>`));
+  assert.deepEqual([...scoped.matchAll(/<loc>([^<]+)<\/loc>/g)].map(match => match[1]).sort(), [
+    `${PUBLIC_SITE_URL}/faro`, `${PUBLIC_SITE_URL}/faro/como-funciona`,
+  ].sort());
   assert.ok(robots.includes(`Sitemap: ${PUBLIC_SITE_URL}/faro/sitemap.xml`));
   const verification = await fetch(`${base}/faro/googlea5f29fa56ca86491.html`);
   assert.equal(verification.status, 200);

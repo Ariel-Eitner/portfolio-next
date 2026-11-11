@@ -32,8 +32,11 @@ mediante una etiqueta HTML; es opcional si se verifica la propiedad por DNS.
 
 La página comercial vive en `/faro`, enlazada desde el inicio y la navegación.
 El recorrido visual vive en `/faro/como-funciona`, con capturas reales ampliables,
-capítulos y ejemplos móviles. Las dos ediciones de la presentación FARO 0.15.1
-se descargan desde `/faro/documentos/`. Los contactos conservan su funcionamiento.
+capítulos y ejemplos móviles. Las dos ediciones de la presentación tienen 27 páginas,
+con capturas municipales del 11/11/2026, guía del mapa y enlace/QR al Digesto público;
+se descargan desde `/faro/documentos/`. Las capturas y los ejemplos nacionales se conservan.
+La URL municipal se centraliza en `municipalDemo`, en `src/data/faro.ts`.
+Los contactos conservan su funcionamiento. El changelog y sus documentos técnicos son internos.
 Su contenido principal y los datos estructurados se entregan en el HTML del servidor.
 Incluye canonical, robots indexables, sitemap con imágenes, Open Graph para servicios
 compatibles (Facebook, LinkedIn, WhatsApp) y tarjeta grande específica para X.
