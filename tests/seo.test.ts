@@ -4,12 +4,41 @@ import { readFile } from "node:fs/promises";
 import { createServer } from "node:net";
 import { after, before, test } from "node:test";
 import sharp from "sharp";
+import jsQR from "jsqr";
 import { faro, municipalDemo, faroQuestions } from "../src/data/faro";
 import { PUBLIC_SITE_URL, resolveSiteUrl } from "../src/lib/site-url";
 
 let server: ChildProcess;
 let base: string;
 let output = "";
+
+test("portfolio QR downloads decode to production in both languages, including the saved card", async () => {
+  for (const lang of ["es", "en"]) {
+    const target = `${PUBLIC_SITE_URL}${lang === "en" ? "/en" : "/"}`;
+    const home = await (await fetch(`${base}${lang === "en" ? "/en" : "/"}`)).text();
+    assert.ok(home.includes(`/compartir/${lang}.svg`));
+    assert.ok(home.includes(`/compartir/${lang}-tarjeta.png`));
+    for (const asset of [`${lang}.svg`, `${lang}.png`, `${lang}-tarjeta.png`]) {
+      const response = await fetch(`${base}/compartir/${asset}`);
+      assert.equal(response.status, 200);
+      assert.match(response.headers.get("content-type")!, asset.endsWith("svg") ? /image\/svg\+xml/ : /image\/png/);
+      const buffer = Buffer.from(await response.arrayBuffer());
+      const image = sharp(buffer);
+      if (asset.endsWith("-tarjeta.png")) {
+        const metadata = await image.metadata();
+        assert.equal(metadata.width, 1440);
+        assert.equal(metadata.height, 1920);
+      }
+      if (asset.endsWith(".png") && !asset.includes("tarjeta")) {
+        assert.equal((await image.metadata()).width, 2048);
+      }
+      const { data, info } = await image.resize({ width: 720 }).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
+      const decoded = jsQR(new Uint8ClampedArray(data), info.width, info.height);
+      assert.equal(decoded?.data, target, `${asset} must be scannable and open the public portfolio`);
+    }
+  }
+  assert.equal((await fetch(`${base}/compartir/unknown.svg`)).status, 404);
+});
 
 before(async () => {
   const socket = createServer();

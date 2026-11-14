@@ -2,8 +2,9 @@ import Reveal from "@/components/ui/Reveal";
 import { profile } from "@/data/profile";
 import { sectionId, type Copy } from "@/data/copy";
 import type { Lang } from "@/i18n/config";
+import PortfolioShare from "./PortfolioShare";
 
-export default function Contact({ copy }: { lang: Lang; copy: Copy }) {
+export default function Contact({ lang, copy }: { lang: Lang; copy: Copy }) {
   const mailto = `mailto:${profile.email}?subject=${encodeURIComponent(copy.ui.mailSubject)}`;
 
   const channels = [
@@ -77,6 +78,10 @@ export default function Contact({ copy }: { lang: Lang; copy: Copy }) {
               {copy.contact.cvEn}
             </a>
           </div>
+        </Reveal>
+
+        <Reveal delay={150}>
+          <PortfolioShare lang={lang} />
         </Reveal>
 
         <Reveal delay={180}>
